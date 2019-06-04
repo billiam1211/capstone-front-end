@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
 import UserContainer from '../UserContainer'
 
 function Home(props){
