@@ -3,7 +3,8 @@ import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 import './App.css';
-import UserContainer from './UserContainer'
+import UserContainer from './UserContainer';
+import ListingContainer from './ListingContainer';
 
 
 
@@ -36,6 +37,7 @@ class App extends Component {
         <button onClick={this.register}>Register</button>
 
         <UserContainer />
+        <ListingContainer /> 
       </div>
     );
   }

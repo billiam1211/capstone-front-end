@@ -6,7 +6,7 @@ import UserContainer from '../UserContainer'
 function Home(props){
 	return (
 		<div>
-			<h3>This is the home component</h3>
+			<h1>This is the home component</h1>
 		</div>
 		)
 }
