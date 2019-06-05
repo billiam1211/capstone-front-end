@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { Link } from 'react-router-dom'
-import './App.css';
 import UserContainer from './UserContainer';
 import CreateListing from './CreateListing';
 import ListingContainer from './ListingContainer';
@@ -137,8 +134,8 @@ class App extends Component {
 
   render(){
     return (
+      
       <div>
-        <h1>The Knot List</h1>
 
         <form className="form" onSubmit={this.handleLogin}>
           <h3>Login</h3>
@@ -157,13 +154,9 @@ class App extends Component {
           <h3> { this.state.registerMsg } </h3>
         </form>
 
-
-
-        <UserContainer loggedUser={this.state} />
-        <ListingContainer />
       </div>
     );
   }
 }
 
-export default App;
+export default AuthContainer;

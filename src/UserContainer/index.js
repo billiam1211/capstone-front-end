@@ -7,6 +7,8 @@ class UserContainer extends Component {
 		super()
 	}
 
+	
+
 	render(){
 		// console.log('UserContainer: ', this.props);
 		return(
