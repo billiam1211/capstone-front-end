@@ -28,12 +28,16 @@ h1, h2, h3, h4 {
 
 .form {
 	background-color: rgba(200, 100, 0, .3);
-	width: 50%;
 	padding: 20px;
 	border-radius: 15px;
 	font-size: 14pt;
-	min-width: 100px;
 	margin: 25px;
 	margin-left: auto;
 	margin-right: auto;
 }
+
+
+
+
+
+

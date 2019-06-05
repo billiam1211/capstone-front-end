@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
-import Home from '../Home';
+import UserAccount from '../UserAccount';
 
 
 class UserContainer extends Component {
-	constructor(){
+	constructor(props){
 		super()
-		this.state = {
-		}
 	}
 
-
 	render(){
+		// console.log('UserContainer: ', this.props);
 		return(
 			<div>
-				<Home />
+				<UserAccount loggedUser={this.props} />
 			</div>
 			)
 	}
+
+
 }
 
 
