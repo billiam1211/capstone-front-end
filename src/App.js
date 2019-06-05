@@ -9,7 +9,9 @@ class App extends Component {
     this.state = ({
       loggedIn: false,
       email: '',
-      password: ''
+      password: '',
+      loginMsg: '',
+      registerMsg: ''
     })
   }
 
@@ -34,14 +36,40 @@ class App extends Component {
       })
       const parsedResponse = await loginResponse.json();
       console.log("login response: ", parsedResponse)
+      console.log(parsedResponse.msg);
+      this.setState({
+        loginMsg: parsedResponse.msg
+      })
     }catch(err){
       console.log(err);
     }
   }
 
 
-  register = async () => {
+  handleRegister = async (e) => {
     console.log('register button clicked');
+    e.preventDefault();
+    try{
+
+      const registerResponse = await fetch('http://localhost:9000/api/v1/user/register', {
+        method: 'POST', 
+        credentials: 'include',
+        body: JSON.stringify(this.state),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      const parsedResponse = await registerResponse.json();
+      console.log("register response: ", parsedResponse)
+
+      const message = parsedResponse.msg
+      this.setState({
+        registerMsg: parsedResponse.msg
+      })
+
+    }catch(err){
+      console.log(err);
+    }
   }
 
 
@@ -51,13 +79,25 @@ class App extends Component {
       <div>
         <h1>The Knot List</h1>
 
-        <form onSubmit={this.handleLogin}>
+        <form className="form" onSubmit={this.handleLogin}>
+          <h3>Login</h3>
           <input type="text" name="email" placeholder="email" onChange={this.handleChange} />
           <input type="text" name="password" placeholder="password" onChange={this.handleChange} />
           <button type="submit">Login</button>
+          <h3> { this.state.loginMsg } </h3>
+
         </form>
 
-        <button onClick={this.register}>Register</button>
+        <form className="form" onSubmit={this.handleRegister}>
+          <h3>Register</h3> 
+          <input type="text" name="email" placeholder="email" onChange={this.handleChange} />
+          <input type="password" name="password" placeholder="password" onChange={this.handleChange} />
+          <input type="text" name="confirm password" placeholder="confirm password" onChange={this.handleChange} />
+          <button type="submit">Register</button>
+          <h3> { this.state.registerMsg } </h3>
+        </form>
+
+
 
         <UserContainer />
         <ListingContainer /> 

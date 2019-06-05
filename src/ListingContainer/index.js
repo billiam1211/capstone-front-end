@@ -78,11 +78,12 @@ class ListingContainer extends Component {
 			<div>
 				<h1>LISTING CONTAINER</h1>
 
-				<form onSubmit={this.handleSubmit}>
-					<input type="text" name="name" placeholder="listing title" onChange={this.handleChange} />
-					<input type="text" name="price" placeholder="price" onChange={this.handleChange} />
-					<input type="text" name="quantity" placeholder="quantity" onChange={this.handleChange} />
-					<input type="textarea" name="description" placeholder="description" onChange={this.handleChange} />
+				<form className="form" onSubmit={this.handleSubmit}>
+					<h2>Create New Listing</h2>
+					<input type="text" name="name" placeholder="listing title" onChange={this.handleChange} /> <br />
+					<input type="text" name="price" placeholder="price" onChange={this.handleChange} /> <br />
+					<input type="text" name="quantity" placeholder="quantity" onChange={this.handleChange} /> <br />
+					<input type="textarea" name="description" placeholder="description" onChange={this.handleChange} /> <br />
 					<select name="category" placeholder="category" onChange={this.handleSelectChange}>
 						<option value="apparel">Apparel</option>
 						<option value="ceremony">Ceremony</option>
@@ -90,17 +91,14 @@ class ListingContainer extends Component {
 						<option value="decorations">Decorations</option>
 						<option value="reception">Reception</option>
 						<option value="other">Other</option>
-					</select>
-
-					<p>Please upload an image</p>
-					
+					</select> <br />
 					<input style={{display: 'none'}} type="file" name="img" onChange={this.fileSelectedHandler} ref={fileInput => this.fileInput = fileInput} />
-					<button onClick={ 
+					<button className="homeBtn" onClick={ 
 						(e) => { 
 							e.preventDefault()
 							this.fileInput.click()
 						} 
-					}>Select File</button>
+					}>Upload Image</button> <br /><br /><br /> 
 					<button>Submit</button>
 				</form>
 			</div>
