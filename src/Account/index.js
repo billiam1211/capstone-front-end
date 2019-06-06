@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Listings from '../Listings';
-import AccountEdit from '../AccountEdit'
+import AccountEdit from '../AccountEdit';
+import CreateListing from '../CreateListing';
 
 
 
@@ -11,7 +12,8 @@ class Account extends React.Component {
 			showAccountEdit: false,
 			email: '',
 			password: '',
-			confirmPassword:''
+			confirmPassword:'',
+			showCreateListing: false
 		})
 	}
 
@@ -109,7 +111,55 @@ class Account extends React.Component {
 		}catch(err){
 			console.log(err);
 		}
+	}
 
+
+
+	// SET TRIGGER TO RENDER THE CREATE LISTING COMPONENT
+	handleCreateNewListing = (e) => {
+		e.preventDefault();
+		console.log('handle create new listing ');
+		this.setState({
+			showCreateListing: true
+		})
+
+	}
+
+
+	// RESETS THE TRIGGER FOR SHOW CREATE NEW LISTING COMPONENT
+	resetTrigger = (e) => {
+		console.log('reset show create listing trigger was hit');
+
+		this.setState({
+			showCreateListing: false
+		})
+
+	}
+
+
+
+	// DELETES A SPECIFIC LISTING USING THE DATA-ID PROPERTY
+	deleteListing = async (e) => {
+		console.log(this.props);
+		console.log('hit the deleteListing button');
+			console.log(e.currentTarget.dataset.listingId);
+			const listingId = e.currentTarget.dataset.listingId
+
+			try{
+			const deleteListingResponse = await fetch(`http://localhost:9000/api/v1/listing/${listingId}`,{
+				method: 'DELETE', 
+				credentials: 'include',
+				headers: {
+				  'Content-Type': 'application/json'
+				}
+			})
+			const parsedResponse = await deleteListingResponse.json();
+			console.log(parsedResponse);
+			await this.props.getUserListings()
+
+		}catch(err){
+			console.log(err);
+		}
 	}
 
 
@@ -125,15 +175,24 @@ class Account extends React.Component {
 		// make else if statement
 		// show edit change to true
 		// when edit is submitted change show edit back to false
-		if(this.state.showAccountEdit){
+		if(this.state.showCreateListing){
 			return(
 				<div>
-					<AccountEdit
-						handleChange={this.handleChange} 
-						submitAccountUpdate={this.submitAccountUpdate}
-					/>
+					<CreateListing getUserListings={this.props.getUserListings} resetTrigger={this.resetTrigger}/>
 				</div>
 				)
+		} else {
+
+			if(this.state.showAccountEdit){
+						return(
+							<div>
+								<AccountEdit
+									handleChange={this.handleChange} 
+									submitAccountUpdate={this.submitAccountUpdate}
+								/>
+							</div>
+							)
+
 		} else {
 			if(this.props.state.registered){
 				return(
@@ -141,6 +200,7 @@ class Account extends React.Component {
 						<h1>Account</h1>
 						<h3>Email:  {this.props.state.email}</h3>
 						<h3>User Id:  {this.props.state.userId}</h3>
+						<button onClick={this.handleCreateNewListing}>Create New Listing</button>
 						<button onClick={this.handleLogout}>Logout</button>
 						<button onClick={this.handleEditAccount}>Edit Account</button>
 						<button onClick={this.handleDeleteAccount}>Delete Account</button>
@@ -152,30 +212,29 @@ class Account extends React.Component {
 						Click 'Create Listing' to post an item for sale</p>
 					</div>
 					)
-			} else {
-				return(
-					<div className="form">
-						<h1>Account</h1>
-						<h3>Email:</h3>
-						<p>{this.props.state.email}</p>
-						<h3>User Id:</h3>
-						<p>{this.props.state.userId}</p>
-						<button onClick={this.handleLogout}	>Logout</button>
-						<button onClick={this.handleEditAccount}>Edit Account</button>
-						<button onClick={this.handleDeleteAccount}>Delete Account</button>
-						<br />
-						<br />
-						<br />
-						<h3 id="listingHeader">Listings:</h3>
-						<Listings listings={this.props.state.listings}/>
-					</div>
-					)	
+		} else {
+			return(
+				<div className="form">
+					<h1>Account</h1>
+					<h3>Email:</h3>
+					<p>{this.props.state.email}</p>
+					<h3>User Id:</h3>
+					<p>{this.props.state.userId}</p>
+					<button onClick={this.handleCreateNewListing}>Create New Listing</button>
+					<button onClick={this.handleLogout}	>Logout</button>
+					<button onClick={this.handleEditAccount}>Edit Account</button>
+					<button onClick={this.handleDeleteAccount}>Delete Account</button>
+					<br />
+					<br />
+					<br />
+					<h3 id="listingHeader">Listings:</h3>
+					<Listings listings={this.props.state.listings} deleteListing={this.deleteListing}/>
+				</div>
+				)	
+				}
 			}
 		}
-
 	}
-
-
 }
 
 

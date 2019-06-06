@@ -90,7 +90,7 @@ class Login extends React.Component {
     console.log(this.state);
     if(this.state.showAccount){
       return(
-        <Account state={this.state} history={this.props.history}/>
+        <Account state={this.state} history={this.props.history} getUserListings={this.getUserListings}/>
         )
     } else {
       return (

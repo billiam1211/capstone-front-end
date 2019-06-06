@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 class CreateListing extends Component {
-	constructor(){
+	constructor(props){
 		super()
 		this.state = {
 			selectedFile: null,
@@ -55,6 +55,8 @@ class CreateListing extends Component {
 		.then(res => {
 			console.log(res);
 		})
+		this.props.getUserListings();
+		this.props.resetTrigger();
 	}
 
 	handleSubmit = (e) => {
