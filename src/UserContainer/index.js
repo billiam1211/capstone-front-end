@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UserAccount from '../UserAccount';
+import UserAccount from './UserAccount';
 
 
 class UserContainer extends Component {
@@ -13,7 +13,6 @@ class UserContainer extends Component {
 		// console.log('UserContainer: ', this.props);
 		return(
 			<div>
-				<UserAccount loggedUser={this.props} />
 			</div>
 			)
 	}

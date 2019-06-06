@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
+import Account from '../Account';
 
-
-class Login extends Component {
+class Login extends React.Component {
   constructor(){
     super();
     this.state = {
@@ -12,7 +10,8 @@ class Login extends Component {
       userId: '',
       loggedIn: false,
       loginMsg: '',
-      registerMsg: ''
+      registerMsg: '',
+      showAccount: false
     }
   }
   
@@ -29,7 +28,6 @@ class Login extends Component {
 
     try{
 
-      // console.log('login button clicked');
       const loginResponse = await fetch('http://localhost:9000/api/v1/auth/login', {
         method: 'POST', 
         credentials: 'include',
@@ -38,20 +36,14 @@ class Login extends Component {
           'Content-Type': 'application/json'
         }
       })
+
       const parsedResponse = await loginResponse.json();
-      // console.log("login response: ", parsedResponse)
-      // console.log(parsedResponse.msg);
-
-
-      await this.setState({
+      this.setState({
         email: parsedResponse.data.email,
         userId: parsedResponse.data._id,
         loginMsg: parsedResponse.msg
       })
-
-
-      await this.getUserListings()
-
+      this.getUserListings()
     }catch(err){
       console.log(err);
     }
@@ -60,12 +52,8 @@ class Login extends Component {
 
   // GETS THE LISTINGS FOR THE LOGGED IN USER
   getUserListings = async () => {
-    console.log('get user listings function hit!');
     const loggedUserId = this.state.userId
-
     try{
-
-
       const listingResponse = await fetch(`http://localhost:9000/api/v1/user/${loggedUserId}`, {
         method: 'GET', 
         credentials: 'include',
@@ -73,36 +61,36 @@ class Login extends Component {
           'Content-Type': 'application/json'
         }
       })
-
       const parsedResponse = await listingResponse.json();
       this.setState({
-        listings: parsedResponse.data.listings
+        listings: parsedResponse.data.listings,
+        showAccount: true
       })
-
-      console.log('++++++++++++++++++++++++++++++++++++');
-      // console.log("listings: ", parsedResponse.data.listings)
-      console.log(this.state);
-      console.log('++++++++++++++++++++++++++++++++++++');
-
     }catch(err){
       console.log(err);
     }
-
   }
 
 
   render(){
-
-    return (
-        <form className="form" onSubmit={this.handleLogin}>
-          <h3>Login</h3>
-          <input type="text" name="email" placeholder="enter email" onChange={this.handleChange} /> <br />
-          <input type="password" name="password" placeholder="enter password" onChange={this.handleChange} /> <br />
-          <button type="submit">Login</button>
-          <h3> { this.state.loginMsg } </h3>
-        </form>
-
+    console.log(this.state);
+    if(this.state.showAccount){
+      return(
+        <Account loggedUser={this.state}/>
+        )
+    } else {
+      return (
+        <div>
+          <form className="form" onSubmit={this.handleLogin}>
+            <h3>Login</h3>
+            <input type="text" name="email" placeholder="enter email" onChange={this.handleChange} /> <br />
+            <input type="password" name="password" placeholder="enter password" onChange={this.handleChange} /> <br />
+            <button type="submit">Login</button>
+            <h3> { this.state.loginMsg } </h3>
+          </form>
+        </div>
       )
+    }
   }
 }
 

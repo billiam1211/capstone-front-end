@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
+import Account from '../Account';
 
 
 
@@ -12,7 +13,8 @@ class Register extends Component {
       email: '',
       userId: '',
       loggedIn: false,
-      registerMsg: ''
+      registerMsg: '',
+      showAccount: false
     }
   }
 
@@ -38,15 +40,16 @@ class Register extends Component {
         }
       })
 
-
       const parsedResponse = await registerResponse.json();
       // console.log("register response: ", parsedResponse)
 
-
       const message = parsedResponse.msg
       this.setState({
+        email: parsedResponse.data.email,
+        userId: parsedResponse.data._id,
         registerMsg: parsedResponse.msg,
-        loggedIn: true
+        loggedIn: true,
+        showAccount:true
       })
 
 
@@ -57,18 +60,26 @@ class Register extends Component {
 
 
 	render(){
-		return(
-			<div>
-		        <form className="form" onSubmit={this.handleRegister}>
-		          <h3>Register</h3> 
-		          <input type="text" name="email" placeholder="email" onChange={this.handleChange} /><br />
-		          <input type="password" name="password" placeholder="password" onChange={this.handleChange} /><br />
-              <input type="password" name="confirmPassword" placeholder="confirm password" onChange={this.handleChange} /> <br />
-		          <button type="submit">Register</button>
-		          <h3> { this.state.registerMsg } </h3>
-		        </form>
-			</div>
-	  )
+    console.log(this.state);
+
+    if(this.state.showAccount){
+          return(
+            <Account loggedUser={this.state}/>
+            )
+        } else {
+        		return(
+        			<div>
+        		        <form className="form" onSubmit={this.handleRegister}>
+        		          <h3>Register</h3> 
+        		          <input type="text" name="email" placeholder="email" onChange={this.handleChange} /><br />
+        		          <input type="password" name="password" placeholder="password" onChange={this.handleChange} /><br />
+                      <input type="password" name="confirmPassword" placeholder="confirm password" onChange={this.handleChange} /> <br />
+        		          <button type="submit">Register</button>
+        		          <h3> { this.state.registerMsg } </h3>
+        		        </form>
+        			</div>
+        	  )
+          }
 	}
 
 }

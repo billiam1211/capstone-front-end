@@ -1,22 +1,15 @@
 body {
+	background: url(https://wallpaperplay.com/walls/full/7/b/3/242781.jpg);
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
 	"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
 	sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	background: url(https://wallpaperplay.com/walls/full/7/b/3/242781.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-color: white;
 	background-attachment: fixed;
 	background-position: center;
 	}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
 
 h1, h2, h3, h4 {
   font-family: 'Arial', cursive;
@@ -29,18 +22,18 @@ ul {
 	list-style: none;
 }
 
-li {
-	margin: 25px;
-}
-
 a {
 	text-decoration: none;
 }
+
 img {
 	height: 300px;
 	width: auto;
-	margin-top: auto;
-	margin-bottom: auto;
+	margin: 25px;
+
+	border-style: groove;
+	border-color: white;
+	border-width: 15px;
 }
 
 button {
@@ -78,54 +71,63 @@ button:active {
 }
 
 input, select {
-	border: 0;
 	padding: 5px;
 	height: 30px;
 	font-size: 16px;
 	font-weight: 500;
 	border-bottom: 2px solid #C8CCD4;
-
-	border-radius: 0;
 	color: #223254;
 }
 
+
+
 .form {
-	background-color: rgba(200, 100, 0, .3);
+	background-color: rgba(255, 255, 255, .7);
 	padding: 20px;
 	border-radius: 15px;
+	text-align: center;
 	font-size: 14pt;
-	margin: 10px;
 	margin-left: auto;
 	margin-right: auto;
-	overflow-wrap: break-word;
+}
+
+.listingDiv {
+	display: flex;
+	flex-direction: column;
 }
 
 .listingUl {
-	height: auto;
-	width: 400px;
 	overflow-wrap: break-word;
+	margin-top: 50px;
+	width: 400px;
+	height: auto;
+
 }
 
-.listings {
-
+.listingContainer {
 	display: flex;
-	flex-direction: row;
 	justify-content: space-around;
-	background-color: rgba(250, 250, 250, .5);
-	padding: 20px;
-	border-radius: 15px;
-	font-size: 12pt;
-	margin: 10px;
-	margin-left: auto;
-	margin-right: auto;
-
+	background-color: rgba(255, 255, 255, 0.7);
+  	border: 25px solid;
+	border-image: url(http://www.emilyalder.com/wp-content/uploads/2015/09/24x24_square_8.png) 50 round;
+	margin: 30px;
+	overflow: auto;
 }
 
 #headerDiv {
-	background-color: rgba(200, 100, 0, .3);
+	background-color: rgba(255, 255, 255, .5);
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
+	border: 25px solid;
+	border-image: url(http://www.emilyalder.com/wp-content/uploads/2015/09/24x24_square_8.png) 50 round;
+}
+
+footer {
+	background-color: rgba(255, 255, 255, .5);
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
 }
 
 

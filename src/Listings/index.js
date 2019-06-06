@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 
 
 
-function UserAccount (props) {
+function Listings (props) {
 
-	console.log(props.loggedUser, '<----<<<');
+	console.log(props, '<----<<<');
+
+
+
 	// this function converts the buffer of the image to a string
 	const arrayBufferToBase64 = (buffer) => {
 		    let binary = '';
@@ -22,11 +25,9 @@ function UserAccount (props) {
 
 
 		return(
-			<div>
-				<div key={i} className="listings">
+				<div key={i} className="listingContainer">
 					<li>
 						<ul className="listingUl">
-							<br />
 							<li>
 								<strong>Title:</strong> {listing.name}
 							</li>
@@ -51,22 +52,11 @@ function UserAccount (props) {
 					</li>
 					<img src={`data:image/jpeg;base64,${data}`} /><br/>
 				</div>
-			</div>
 			)
 	})
 		return(
-			<div className="form">
-				<div >
-					<h1>Account Overview</h1>
-						<h3>Email: { props.loggedUser.loggedUser.email } </h3><br />
-						<h3>UserId: { props.loggedUser.loggedUser.userId }</h3><br />
-						<h3>Listings: </h3><br />
-						<button>Edit Account</button><br />
-	        			<button>Delete</button><br />
-	        			<button>Log Out</button><br />
-				</div>
-
-				<div>
+			<div>
+				<div className="listingDiv">
 					<h3>Active Listings:</h3>
 					<ul>
 						{ listingLis }
@@ -78,4 +68,4 @@ function UserAccount (props) {
 }
 
 
-export default UserAccount;
+export default Listings;
