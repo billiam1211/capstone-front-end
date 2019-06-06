@@ -37,10 +37,9 @@ img {
     height: 300px;
     width: auto;
     margin: 25px;
-
-    border-style: groove;
-    border-color: white;
-    border-width: 15px;
+    border-style: ridge;
+    border-color: rgba(255, 255, 255, 0.5);
+    border-width: 10px;
 }
 
 button {

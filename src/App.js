@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { Link } from 'react-router-dom'
 import './App.css';
-import Account from './Account';
-import CreateListing from './CreateListing';
-import Login from './Login';
-import Register from './Register';
-import Home from './Home';
-import Header from './Header';
-import Listings from './Listings';
-import Footer from './Footer';
+import React, { Component } from 'react';
+import { Route, Switch }    from 'react-router-dom';
+import { Link }             from 'react-router-dom'
+import Account              from './Account';
+import CreateListing        from './CreateListing';
+import Login                from './Login';
+import Register             from './Register';
+import Home                 from './Home';
+import Header               from './Header';
+import Listings             from './Listings';
+import Footer               from './Footer';
+import AccountEdit          from './AccountEdit';
 
 class App extends Component {
   constructor(){
