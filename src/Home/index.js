@@ -18,7 +18,7 @@ class Home extends Component{
 				Wedding Trade is the premier online platform for connecting individuals that want to 
 				buy, sell, and trade wedding goods.<br/><br/>
 			</h3>
-			<img src="https://www.hellomagazine.com/imagenes/brides/2019011066459/wedding-planning-apps-for-brides/0-313-188/wedding-planning-t.jpg"/>
+			<img alt="wedding-planning-photo" src="https://www.hellomagazine.com/imagenes/brides/2019011066459/wedding-planning-apps-for-brides/0-313-188/wedding-planning-t.jpg"/>
 				
 			<p>
 				Click Register to sign up today!

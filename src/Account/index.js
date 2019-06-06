@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Listings from '../Listings';
 import AccountEdit from '../AccountEdit';
 import CreateListing from '../CreateListing';
+import EditListing from '../EditListing';
 
 
 
@@ -13,7 +14,9 @@ class Account extends React.Component {
 			email: '',
 			password: '',
 			confirmPassword:'',
-			showCreateListing: false
+			showCreateListing: false,
+			showEditListing: false,
+			editListingId: ''
 		})
 	}
 
@@ -131,7 +134,8 @@ class Account extends React.Component {
 		console.log('reset show create listing trigger was hit');
 
 		this.setState({
-			showCreateListing: false
+			showCreateListing: false,
+			showEditListing: false
 		})
 
 	}
@@ -164,6 +168,19 @@ class Account extends React.Component {
 
 
 
+	//EDIT LISTING FUNCTION
+	editListing = (e) => {
+		e.preventDefault()
+		console.log('hit the edit listing function');
+		console.log(e.currentTarget.dataset.listingId)
+		this.setState({
+			showEditListing: true,
+			editListingId: e.currentTarget.dataset.listingId
+		})
+	}
+
+
+
 
 
 
@@ -172,65 +189,71 @@ class Account extends React.Component {
 		// console.log(this.props.state.userId, '***logged user***');
 		// console.log(this.props, '<==');
 
-		// make else if statement
-		// show edit change to true
-		// when edit is submitted change show edit back to false
-		if(this.state.showCreateListing){
+
+		if(this.state.showEditListing){
 			return(
 				<div>
-					<CreateListing getUserListings={this.props.getUserListings} resetTrigger={this.resetTrigger}/>
+					<EditListing getUserListings={this.props.getUserListings} resetTrigger={this.resetTrigger} listingId={this.state.editListingId}/>
 				</div>
 				)
 		} else {
 
-			if(this.state.showAccountEdit){
-						return(
-							<div>
-								<AccountEdit
-									handleChange={this.handleChange} 
-									submitAccountUpdate={this.submitAccountUpdate}
-								/>
-							</div>
-							)
-
-		} else {
-			if(this.props.state.registered){
+			if(this.state.showCreateListing){
+				return(
+					<div>
+						<CreateListing getUserListings={this.props.getUserListings} resetTrigger={this.resetTrigger}/>
+					</div>
+					)
+			} else {
+				if(this.state.showAccountEdit){
+							return(
+								<div>
+									<AccountEdit handleChange={this.handleChange} submitAccountUpdate={this.submitAccountUpdate} />
+								</div>
+								)
+			} else {
+				if(this.props.state.registered){
+					return(
+						<div className="form">
+							<h1>Account</h1>
+							<h3>Email:  {this.props.state.email}</h3>
+							<h3>User Id:  {this.props.state.userId}</h3>
+							<button onClick={this.handleCreateNewListing}>Create New Listing</button>
+							<button onClick={this.handleLogout}>Logout</button>
+							<button onClick={this.handleEditAccount}>Edit Account</button>
+							<button onClick={this.handleDeleteAccount}>Delete Account</button>
+							<br />
+							<br />
+							<br />
+							<h3 id="listingHeader">Listings:</h3>
+							<p>You don't have any listings yet <br /> 
+							Click 'Create Listing' to post an item for sale</p>
+						</div>
+						)
+			} else {
 				return(
 					<div className="form">
 						<h1>Account</h1>
-						<h3>Email:  {this.props.state.email}</h3>
-						<h3>User Id:  {this.props.state.userId}</h3>
+						<h3>Email:</h3>
+						<p>{this.props.state.email}</p>
+						<h3>User Id:</h3>
+						<p>{this.props.state.userId}</p>
 						<button onClick={this.handleCreateNewListing}>Create New Listing</button>
-						<button onClick={this.handleLogout}>Logout</button>
+						<button onClick={this.handleLogout}	>Logout</button>
 						<button onClick={this.handleEditAccount}>Edit Account</button>
 						<button onClick={this.handleDeleteAccount}>Delete Account</button>
 						<br />
 						<br />
 						<br />
 						<h3 id="listingHeader">Listings:</h3>
-						<p>You don't have any listings yet <br /> 
-						Click 'Create Listing' to post an item for sale</p>
+						<Listings 
+							listings={ this.props.state.listings } 
+							deleteListing={ this.deleteListing } 
+							editListing={ this.editListing } 
+							/>
 					</div>
-					)
-		} else {
-			return(
-				<div className="form">
-					<h1>Account</h1>
-					<h3>Email:</h3>
-					<p>{this.props.state.email}</p>
-					<h3>User Id:</h3>
-					<p>{this.props.state.userId}</p>
-					<button onClick={this.handleCreateNewListing}>Create New Listing</button>
-					<button onClick={this.handleLogout}	>Logout</button>
-					<button onClick={this.handleEditAccount}>Edit Account</button>
-					<button onClick={this.handleDeleteAccount}>Delete Account</button>
-					<br />
-					<br />
-					<br />
-					<h3 id="listingHeader">Listings:</h3>
-					<Listings listings={this.props.state.listings} deleteListing={this.deleteListing}/>
-				</div>
-				)	
+					)	
+					}
 				}
 			}
 		}

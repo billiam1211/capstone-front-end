@@ -84,6 +84,7 @@ select {
     font-weight: 500;
     border-bottom: 2px solid #C8CCD4;
     color: #223254;
+    margin: 5px;
 }
 
 footer {

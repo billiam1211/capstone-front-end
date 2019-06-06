@@ -40,7 +40,7 @@ class Login extends React.Component {
 
       const parsedResponse = await loginResponse.json();
 
-      if(parsedResponse.status == 200){
+      if(parsedResponse.status === 200){
         this.setState({
           email: parsedResponse.data.email,
           userId: parsedResponse.data._id,
@@ -52,7 +52,7 @@ class Login extends React.Component {
         })
       }
 
-      if(this.state.email != ''){
+      if(this.state.email !== ''){
         this.getUserListings()
       }
     }catch(err){
@@ -87,7 +87,7 @@ class Login extends React.Component {
   render(){
     // console.log("login props:")
     // console.log(this.props)
-    console.log(this.state);
+    // console.log(this.state);
     if(this.state.showAccount){
       return(
         <Account state={this.state} history={this.props.history} getUserListings={this.getUserListings}/>
