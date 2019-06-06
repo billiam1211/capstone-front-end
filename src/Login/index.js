@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
-import UserContainer from './UserContainer';
-import CreateListing from './CreateListing';
-import ListingContainer from './ListingContainer';
+import { Route, Switch } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
-class App extends Component {
+
+class Login extends Component {
   constructor(){
-    super()
-    this.state = ({
+    super();
+    this.state = {
       email: '',
       listings: [],
       userId: '',
       loggedIn: false,
       loginMsg: '',
       registerMsg: ''
-    })
+    }
   }
-
-
-
-
+  
 
   handleChange = (e) => {
     this.setState({[e.target.name]: e.target.value});
@@ -61,42 +58,6 @@ class App extends Component {
   }
 
 
-
-  // HANDLES NEW USER REGISTRATION
-  handleRegister = async (e) => {
-    e.preventDefault();
-
-
-    try{
-
-
-      const registerResponse = await fetch('http://localhost:9000/api/v1/user/register', {
-        method: 'POST', 
-        credentials: 'include',
-        body: JSON.stringify(this.state),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-
-
-      const parsedResponse = await registerResponse.json();
-      // console.log("register response: ", parsedResponse)
-
-
-      const message = parsedResponse.msg
-      this.setState({
-        registerMsg: parsedResponse.msg
-      })
-
-
-    }catch(err){
-      console.log(err);
-    }
-  }
-
-
-
   // GETS THE LISTINGS FOR THE LOGGED IN USER
   getUserListings = async () => {
     console.log('get user listings function hit!');
@@ -130,33 +91,19 @@ class App extends Component {
   }
 
 
-
-
   render(){
-    return (
-      
-      <div>
 
+    return (
         <form className="form" onSubmit={this.handleLogin}>
           <h3>Login</h3>
-          <input type="text" name="email" placeholder="email" onChange={this.handleChange} />
-          <input type="text" name="password" placeholder="password" onChange={this.handleChange} />
+          <input type="text" name="email" placeholder="enter email" onChange={this.handleChange} /> <br />
+          <input type="password" name="password" placeholder="enter password" onChange={this.handleChange} /> <br />
           <button type="submit">Login</button>
           <h3> { this.state.loginMsg } </h3>
-
         </form>
 
-        <form className="form" onSubmit={this.handleRegister}>
-          <h3>Register</h3> 
-          <input type="text" name="email" placeholder="email" onChange={this.handleChange} />
-          <input type="password" name="password" placeholder="password" onChange={this.handleChange} />
-          <button type="submit">Register</button>
-          <h3> { this.state.registerMsg } </h3>
-        </form>
-
-      </div>
-    );
+      )
   }
 }
 
-export default AuthContainer;
+export default Login;

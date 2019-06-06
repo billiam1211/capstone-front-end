@@ -1,33 +1,128 @@
-.App {
-  text-align: center;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+/*  background: url(https://wallpaperplay.com/walls/full/7/b/3/242781.jpg);
+*/  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: white;
+  background-attachment: fixed;
+  background-position: center;
+  }
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+h1, h2, h3, h4 {
+  font-family: 'Arial', cursive;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 1);
+  font-weight: 600;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+ul {
+  list-style: none;
+}
+
+li {
+  margin: 25px;
+}
+
+
+img {
+  height: 300px;
+  width: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+button {
+  box-shadow: 3px 4px 0px 0px #1564ad;
+  background:-o-linear-gradient(top, #79bbff 5%, #378de5 100%);
+  background:-ms-linear-gradient(top, #79bbff 5%, #378de5 100%);
+  background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#378de5',GradientType=0);
+  background-color:#79bbff;
+  border-radius:5px;
+  border:1px solid #337bc4;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:17px;
+  font-weight:bold;
+  padding: 10px 10px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #528ecc;
+  margin: 10px;
+}
+
+button:hover {
+  background:-o-linear-gradient(top, #378de5 5%, #79bbff 100%);
+  background:-ms-linear-gradient(top, #378de5 5%, #79bbff 100%);
+  background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff',GradientType=0);
+  background-color:#378de5;
+}
+
+button:active {
+  position:relative;
+  top:1px;
+}
+
+input, select {
+  border: 0;
+  padding: 5px;
+  height: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  border-bottom: 2px solid #C8CCD4;
+
+  border-radius: 0;
+  color: #223254;
+}
+
+.form {
+  background-color: rgba(200, 100, 0, .3);
+  padding: 20px;
+  border-radius: 15px;
+  font-size: 14pt;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-wrap: break-word;
+}
+
+.listingUl {
+  height: auto;
+  width: 400px;
+  overflow-wrap: break-word;
+}
+
+.listings {
+
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: rgba(250, 250, 250, .5);
+  padding: 20px;
+  border-radius: 15px;
+  font-size: 12pt;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
+
+
+
+
+
