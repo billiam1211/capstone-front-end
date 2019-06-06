@@ -11,7 +11,8 @@ class Login extends React.Component {
       loggedIn: false,
       loginMsg: '',
       registerMsg: '',
-      showAccount: false
+      showAccount: false,
+      registered: false
     }
   }
   
@@ -62,7 +63,8 @@ class Login extends React.Component {
         }
       })
       const parsedResponse = await listingResponse.json();
-      this.setState({
+      console.log(parsedResponse);
+      await this.setState({
         listings: parsedResponse.data.listings,
         showAccount: true
       })
@@ -73,10 +75,12 @@ class Login extends React.Component {
 
 
   render(){
+    // console.log("login props:")
+    // console.log(this.props)
     console.log(this.state);
     if(this.state.showAccount){
       return(
-        <Account loggedUser={this.state}/>
+        <Account state={this.state} history={this.props.history}/>
         )
     } else {
       return (

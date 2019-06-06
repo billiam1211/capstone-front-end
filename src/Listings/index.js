@@ -17,7 +17,7 @@ function Listings (props) {
 		}
 
 	// stores the mapped out listings inot a variable to render below
-	const listingLis = props.loggedUser.loggedUser.listings.map((listing, i) => {
+	const listingLis = props.listings.map((listing, i) => {
 
 		// this calls the function above and converts the buffer to a string 
 		// for each listing so we can render the image 
@@ -57,7 +57,6 @@ function Listings (props) {
 		return(
 			<div>
 				<div className="listingDiv">
-					<h3>Active Listings:</h3>
 					<ul>
 						{ listingLis }
 					</ul>

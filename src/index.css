@@ -1,14 +1,18 @@
 body {
     background: url(https://wallpaperplay.com/walls/full/7/b/3/242781.jpg);
-    margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
         "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
         sans-serif;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: white;
     background-attachment: fixed;
     background-position: center;
+    margin-bottom: 100px;
+    overflow: scroll;
+
+
+
+
 }
 
 h1,
@@ -130,4 +134,12 @@ footer {
     justify-content: space-around;
     border: 25px solid;
     border-image: url(http://www.emilyalder.com/wp-content/uploads/2015/09/24x24_square_8.png) 50 round;
+}
+
+#listingHeader {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100px;
+    width: auto;
 }

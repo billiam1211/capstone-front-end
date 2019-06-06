@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
 import Account from '../Account';
 
 
@@ -42,9 +40,10 @@ class Register extends Component {
       })
 
       const parsedResponse = await registerResponse.json();
-      // console.log("register response: ", parsedResponse)
+      console.log("register response: ", parsedResponse)
 
       const message = parsedResponse.msg
+
       this.setState({
         email: parsedResponse.data.email,
         userId: parsedResponse.data._id,
@@ -66,7 +65,7 @@ class Register extends Component {
 
     if(this.state.showAccount){
           return(
-            <Account state={this.state}/>
+            <Account state={this.state} history={this.props.history}/>
             )
         } else {
         		return(
