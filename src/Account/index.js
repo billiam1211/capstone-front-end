@@ -3,6 +3,7 @@ import Listings from '../Listings';
 import AccountEdit from '../AccountEdit'
 
 
+
 class Account extends React.Component {
 	constructor(props){
 		super()
@@ -27,9 +28,7 @@ class Account extends React.Component {
 	handleLogout = async (e) => {
 		e.preventDefault()
 		console.log('logout button clicked');
-
 		try{
-
 			const logoutResponse = await fetch('http://localhost:9000/api/v1/auth/logout', {
 				method: 'DELETE', 
 				credentials: 'include',
@@ -53,9 +52,9 @@ class Account extends React.Component {
 		this.setState({
 			showAccountEdit: true
 		})
-
-
 	}
+
+
 
 	// DELETES USER ACCOUNT AND REDIRECTS TO HOME PAGE
 	handleDeleteAccount = async (e) => {

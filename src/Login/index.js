@@ -39,12 +39,22 @@ class Login extends React.Component {
       })
 
       const parsedResponse = await loginResponse.json();
-      this.setState({
-        email: parsedResponse.data.email,
-        userId: parsedResponse.data._id,
-        loginMsg: parsedResponse.msg
-      })
-      this.getUserListings()
+
+      if(parsedResponse.status == 200){
+        this.setState({
+          email: parsedResponse.data.email,
+          userId: parsedResponse.data._id,
+          loginMsg: parsedResponse.msg
+        })
+      } else {
+        this.setState({
+          loginMsg: parsedResponse.msg
+        })
+      }
+
+      if(this.state.email != ''){
+        this.getUserListings()
+      }
     }catch(err){
       console.log(err);
     }
