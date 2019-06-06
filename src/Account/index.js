@@ -8,16 +8,14 @@ class Account extends React.Component {
 	}
 
 	render(){
-		console.log(this.props.loggedUser.listings.length, 'this.props in the account component');
+		console.log("Account => this.props: ", this.props.state.registered);
 
-		if(this.props.loggedUser.listings.length == 0){
+		if(this.props.state.registered){
 			return(
 				<div className="form">
 					<h1>Account</h1>
-					<h3>Email:</h3>
-					<p>{this.props.loggedUser.email}</p>
-					<h3>User Id:</h3>
-					<p>{this.props.loggedUser.userId}</p>
+					<h3>Email: {this.props.state.email}</h3>
+					<h3>User Id: {this.props.state.userId}</h3>
 					<button>Logout</button>
 					<button>Edit Account</button>
 					<button>Delete Account</button>

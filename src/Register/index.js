@@ -14,7 +14,8 @@ class Register extends Component {
       userId: '',
       loggedIn: false,
       registerMsg: '',
-      showAccount: false
+      showAccount: false,
+      registered: false
     }
   }
 
@@ -49,7 +50,8 @@ class Register extends Component {
         userId: parsedResponse.data._id,
         registerMsg: parsedResponse.msg,
         loggedIn: true,
-        showAccount:true
+        showAccount:true,
+        registered: true
       })
 
 
@@ -60,11 +62,11 @@ class Register extends Component {
 
 
 	render(){
-    console.log(this.state);
+    // console.log(this.state);
 
     if(this.state.showAccount){
           return(
-            <Account loggedUser={this.state}/>
+            <Account state={this.state}/>
             )
         } else {
         		return(
