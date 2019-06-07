@@ -11,7 +11,7 @@ const Header = () => {
     	<div id="headerDiv">
             <Link to="/home"> <h3>Home</h3> </Link>
             <Link to="/index"> <h3>Listings</h3> </Link>
-	        <Link to="/login"> <h3>Login</h3></Link>
+	        <Link to="/account"> <h3>Account</h3></Link>
 	        <Link to="/register"> <h3>Register</h3> </Link> 
 
         </div>

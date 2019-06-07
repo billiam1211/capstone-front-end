@@ -51,7 +51,7 @@ class EditListing extends Component {
 		console.log(formData);
 		const listingId = this.props.listingId
 
-		await axios.put(`http://localhost:9000/api/v1/listing/${listingId}`, formData, { withCredentials: true }, {
+		await axios.put(`http://localhost:9000/listing/${listingId}`, formData, { withCredentials: true }, {
 			onUploadProgress: progressEvent => {
 				console.log('Upload Progress: ' + Math.round((progressEvent.loaded / progressEvent.total) * 100) + '%');
 			}

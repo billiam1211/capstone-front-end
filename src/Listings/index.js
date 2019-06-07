@@ -5,7 +5,7 @@ import Collapsible from 'react-collapsible';
 
 function Listings (props) {
 
-	console.log(props, '<----<<<');
+	// console.log(props, '<----<<<');
 
 
 

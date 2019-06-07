@@ -42,6 +42,9 @@ class Account extends React.Component {
 				}
 			})
 			const  parsedResponse = await logoutResponse.json()
+
+			this.props.resetLoggedIn()
+
 			this.props.history.push("/home");
 		}catch(err){
 			console.log(err);
@@ -150,7 +153,7 @@ class Account extends React.Component {
 			const listingId = e.currentTarget.dataset.listingId
 
 			try{
-			const deleteListingResponse = await fetch(`http://localhost:9000/api/v1/listing/${listingId}`,{
+			const deleteListingResponse = await fetch(`http://localhost:9000/listing/${listingId}`,{
 				method: 'DELETE', 
 				credentials: 'include',
 				headers: {
@@ -188,8 +191,6 @@ class Account extends React.Component {
 		console.log(this.state);
 		// console.log(this.props.state.userId, '***logged user***');
 		// console.log(this.props, '<==');
-
-
 		if(this.state.showEditListing){
 			return(
 				<div>
@@ -212,6 +213,7 @@ class Account extends React.Component {
 								</div>
 								)
 			} else {
+				console.log(this.props);
 				if(this.props.state.registered){
 					return(
 						<div className="form">

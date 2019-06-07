@@ -5,7 +5,7 @@ import Account from '../Account';
 
 // this is the class for registering a new user 
 class Register extends Component {
-  constructor(){
+  constructor(props){
     super();
     this.state = {
       email: '',
@@ -53,6 +53,8 @@ class Register extends Component {
         registered: true
       })
 
+      //set global state for a newly registered user
+      this.props.setRegisterGlobal()
 
     }catch(err){
       console.log(err);
@@ -62,7 +64,7 @@ class Register extends Component {
 
 	render(){
     // console.log(this.state);
-
+    console.log(this.props, 'register component props');
     if(this.state.showAccount){
           return(
             <Account state={this.state} history={this.props.history}/>

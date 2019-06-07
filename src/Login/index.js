@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Account from '../Account';
 
 class Login extends React.Component {
-  constructor(){
+  constructor(props){
     super();
     this.state = {
       email: '',
@@ -12,7 +12,6 @@ class Login extends React.Component {
       loginMsg: '',
       registerMsg: '',
       showAccount: false,
-      registered: false
     }
   }
   
@@ -44,8 +43,12 @@ class Login extends React.Component {
         this.setState({
           email: parsedResponse.data.email,
           userId: parsedResponse.data._id,
-          loginMsg: parsedResponse.msg
+          loginMsg: parsedResponse.msg,
+          loggedIn: true
         })
+
+        this.props.logInGlobal()
+
       } else {
         this.setState({
           loginMsg: parsedResponse.msg
@@ -58,6 +61,14 @@ class Login extends React.Component {
     }catch(err){
       console.log(err);
     }
+  }
+
+  // this is called when the user logs out in the account app to reset the logged in trigger to false
+  resetLoginTrigger = () => {
+    this.setState({
+      loggedIn: false
+    })
+    this.props.logoutGlobal()
   }
 
 
@@ -85,12 +96,14 @@ class Login extends React.Component {
 
 
   render(){
+    console.log(this.state);
+    console.log(this.props);
     // console.log("login props:")
     // console.log(this.props)
     // console.log(this.state);
     if(this.state.showAccount){
       return(
-        <Account state={this.state} history={this.props.history} getUserListings={this.getUserListings}/>
+        <Account state={this.state} history={this.props.history} getUserListings={this.getUserListings} resetLoggedIn={this.resetLoginTrigger}/>
         )
     } else {
       return (

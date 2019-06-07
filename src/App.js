@@ -15,27 +15,57 @@ import ListingIndex         from './ListingIndex';
 
 
 
-
 class App extends Component {
   constructor(){;
     super()
     this.state = ({
-      state: 'empty'
+      loggedIn: false,
+      userRegistered: false
+    })
+  }
+
+  logUserInGlobal = () => {
+    this.setState({
+      loggedIn: true
+    })
+  }
+
+  logUserOutGlobal = () => {
+    this.setState({
+      loggedIn: false
+    })
+  }
+
+  setRegisterGlobal = () => {
+    this.setState({
+      userRegistered: true
+    })
+  }
+
+  resetRegisteredGlobal = () => {
+    this.setState({
+      userRegistered: false
     })
   }
 
 
+          
+
+
+//<Route path="/home" render={ (props) => <Home {...props} /> } />
+//<Route path="/login" component={ Login } />
 
   render(){
+    console.log('HERE IS GLOBAL STATE: ', this.state);
     return (
       <main>
         <Header />
         <Switch>
 
           <Route path='/home' component={ Home } />
-          <Route path="/login" component={ Login } />
-          <Route path="/register" component={ Register } />
-          <Route path="/account" component={ Account } />
+          <Route path='/login' render={ (props) => <Login {...props} logInGlobal={this.logUserInGlobal} logoutGlobal={this.logUserOutGlobal} /> } />
+          <Route path='/register' render={ (props) => <Register {...props} setRegisterGlobal={this.setRegisterGlobal} /> } />
+          <Route path="/account" render={ (props) => <Account {...props} globalState={this.state} /> } />
           <Route path="/index" component={ ListingIndex } />
 
         </Switch>
