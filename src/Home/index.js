@@ -16,7 +16,7 @@ class Home extends Component{
 
 			
 		<div className="form">
-			<h1 className="pulse">Welcome To Wedding Trade</h1>
+			<h1 className="pulse">Welcome To Wedding Exchange</h1>
 			<h3>
 				Wedding Trade is the premier online platform for connecting individuals that want to 
 				buy, sell, and trade wedding goods.<br/><br/>

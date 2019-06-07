@@ -47,7 +47,7 @@ class CreateListing extends Component {
 		formData.append('description', this.state.description)
 		formData.append('quantity', this.state.quantity)
 		console.log(formData);
-		await axios.post('http://localhost:9000/api/v1/listing/new', formData, { withCredentials: true }, {
+		await axios.post(process.env.REACT_APP_BACKEND_URL + '/api/v1/listing/new', formData, { withCredentials: true }, {
 			onUploadProgress: progressEvent => {
 				console.log('Upload Progress: ' + Math.round((progressEvent.loaded / progressEvent.total) * 100) + '%');
 			}

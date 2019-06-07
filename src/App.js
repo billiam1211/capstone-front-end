@@ -51,7 +51,7 @@ class App extends Component {
         <Header />
         <Switch>
 
-          <Route path='/home' component={ Home } />
+          <Route path='/' component={ Home } />
           <Route path='/login' render={ (props) => <Login {...props} logInGlobal={this.logUserInGlobal} logoutGlobal={this.logUserOutGlobal} /> } />
           <Route path='/register' render={ (props) => <Register {...props} setRegisterGlobal={this.setRegisterGlobal} /> } />
           <Route path="/account" render={ (props) => <Account {...props} globalState={this.state} /> } />
