@@ -55,6 +55,7 @@ class Account extends React.Component {
 
 	// SETS TRIGGER TO RENDER THE ACCOUNT EDIT PAGE
 	handleEditAccount = (e) => {
+		console.log();
 		e.preventDefault()
 		console.log('Edit account button clicked');
 		this.setState({
