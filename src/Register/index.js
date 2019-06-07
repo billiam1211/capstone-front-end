@@ -30,7 +30,7 @@ class Register extends Component {
     try{
 
 
-      const registerResponse = await fetch('http://localhost:9000/api/v1/user/register', {
+      const registerResponse = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/user/register', {
         method: 'POST', 
         credentials: 'include',
         body: JSON.stringify(this.state),

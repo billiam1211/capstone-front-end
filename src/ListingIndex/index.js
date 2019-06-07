@@ -21,7 +21,7 @@ class ListingIndex extends Component {
 
 	getListingIndex = async (e) => {
 		
-		const listings = await fetch('http://localhost:9000/api/v1/listing/index', {
+		const listings = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/listing/index', {
 				method: 'GET', 
 				credentials: 'include',
 				headers: {
@@ -56,6 +56,10 @@ class ListingIndex extends Component {
 
 
 		return(
+
+
+
+
 				<div key={i} className="listingContainer">
 					<li>
 						<ul className="listingUl">
@@ -84,6 +88,19 @@ class ListingIndex extends Component {
 	})
 		return(
 			<div>
+
+
+				<select name="category" placeholder="category">
+					<option value="apparel">Apparel</option>
+					<option value="ceremony">Ceremony</option>
+					<option value="partyfavors">Party favors</option>
+					<option value="decorations">Decorations</option>
+					<option value="reception">Reception</option>
+					<option value="other">Other</option>
+				</select> 
+
+
+
 				<div className="listingDiv">
 					<ul>
 						{ listingLis }

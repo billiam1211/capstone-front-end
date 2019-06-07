@@ -36,17 +36,6 @@ class App extends Component {
     })
   }
 
-  setRegisterGlobal = () => {
-    this.setState({
-      userRegistered: true
-    })
-  }
-
-  resetRegisteredGlobal = () => {
-    this.setState({
-      userRegistered: false
-    })
-  }
 
 
           

@@ -28,7 +28,7 @@ class Login extends React.Component {
 
     try{
 
-      const loginResponse = await fetch('http://localhost:9000/api/v1/auth/login', {
+      const loginResponse = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/auth/login', {
         method: 'POST', 
         credentials: 'include',
         body: JSON.stringify(this.state),
@@ -76,7 +76,7 @@ class Login extends React.Component {
   getUserListings = async () => {
     const loggedUserId = this.state.userId
     try{
-      const listingResponse = await fetch(`http://localhost:9000/api/v1/user/${loggedUserId}`, {
+      const listingResponse = await fetch(process.env.REACT_APP_BACKEND_URL + `/api/v1/user/${loggedUserId}`, {
         method: 'GET', 
         credentials: 'include',
         headers: {

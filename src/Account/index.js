@@ -34,7 +34,7 @@ class Account extends React.Component {
 		e.preventDefault()
 		console.log('logout button clicked');
 		try{
-			const logoutResponse = await fetch('http://localhost:9000/api/v1/auth/logout', {
+			const logoutResponse = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/auth/logout', {
 				method: 'DELETE', 
 				credentials: 'include',
 				headers: {
@@ -70,7 +70,7 @@ class Account extends React.Component {
 		console.log('delete account button clicked');
 		try{
 
-			const deleteAccountResponse = await fetch(`http://localhost:9000/api/v1/user/${this.props.state.userId}`,{
+			const deleteAccountResponse = await fetch(process.env.REACT_APP_BACKEND_URL + `/api/v1/user/${this.props.state.userId}`,{
 				method: 'DELETE', 
 				credentials: 'include',
 				headers: {
@@ -100,7 +100,7 @@ class Account extends React.Component {
 			confirmPassword: this.state.confirmPassword
 		}
 		try{
-			const updatedAccountResponse = await fetch(`http://localhost:9000/api/v1/user/${this.props.state.userId}`,{
+			const updatedAccountResponse = await fetch(process.env.REACT_APP_BACKEND_URL + `/api/v1/user/${this.props.state.userId}`,{
 				method: 'PUT', 
 				credentials: 'include',
         		body: JSON.stringify(userData),
@@ -153,7 +153,7 @@ class Account extends React.Component {
 			const listingId = e.currentTarget.dataset.listingId
 
 			try{
-			const deleteListingResponse = await fetch(`http://localhost:9000/listing/${listingId}`,{
+			const deleteListingResponse = await fetch(process.env.REACT_APP_BACKEND_URL + `/listing/${listingId}`,{
 				method: 'DELETE', 
 				credentials: 'include',
 				headers: {
