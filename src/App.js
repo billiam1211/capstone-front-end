@@ -20,7 +20,11 @@ class App extends Component {
     super()
     this.state = ({
       loggedIn: false,
-      userRegistered: false
+      userRegistered: false,
+      email: '',
+      userId: '',
+      listings: []
+
     })
   }
 

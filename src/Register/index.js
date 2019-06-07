@@ -53,8 +53,7 @@ class Register extends Component {
         registered: true
       })
 
-      //set global state for a newly registered user
-      this.props.setRegisterGlobal()
+
 
     }catch(err){
       console.log(err);
