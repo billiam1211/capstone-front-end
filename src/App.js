@@ -11,9 +11,13 @@ import Header               from './Header';
 import Listings             from './Listings';
 import Footer               from './Footer';
 import AccountEdit          from './AccountEdit';
+import ListingIndex         from './ListingIndex';
+
+
+
 
 class App extends Component {
-  constructor(){
+  constructor(){;
     super()
     this.state = ({
       state: 'empty'
@@ -32,6 +36,7 @@ class App extends Component {
           <Route path="/login" component={ Login } />
           <Route path="/register" component={ Register } />
           <Route path="/account" component={ Account } />
+          <Route path="/index" component={ ListingIndex } />
 
         </Switch>
         <Footer />

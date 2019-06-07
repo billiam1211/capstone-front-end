@@ -1,15 +1,45 @@
 import React, { Component } from 'react';
-import Collapsible from 'react-collapsible';
 
 
 
-function Listings (props) {
 
-	console.log(props, '<----<<<');
+class ListingIndex extends Component {
+	constructor(){
+		super()
+		this.state = {
+			listings: []
+		}
+	}
 
 
 
-	// this function converts the buffer of the image to a string
+	componentDidMount(){
+		this.getListingIndex()
+	}
+
+
+
+	getListingIndex = async (e) => {
+		
+		const listings = await fetch('http://localhost:9000/api/v1/listing/index', {
+				method: 'GET', 
+				credentials: 'include',
+				headers: {
+				  'Content-Type': 'application/json'
+				}
+		})
+
+		const parsedResponse = await listings.json();
+		console.log(parsedResponse.data);
+		this.setState({
+			listings: parsedResponse.data
+		})
+	}
+
+
+
+	render(){
+
 	const arrayBufferToBase64 = (buffer) => {
 		    let binary = '';
 		    let bytes = [].slice.call(new Uint8Array(buffer));
@@ -18,7 +48,7 @@ function Listings (props) {
 		}
 
 	// stores the mapped out listings inot a variable to render below
-	const listingLis = props.listings.map((listing, i) => {
+	const listingLis = this.state.listings.map((listing, i) => {
 
 		// this calls the function above and converts the buffer to a string 
 		// for each listing so we can render the image 
@@ -44,10 +74,7 @@ function Listings (props) {
 							<li>
 								<strong>Description:</strong> {listing.description}
 							</li>
-							<li>
-								<button data-listing-id={listing._id} onClick={props.editListing} >Edit Listing</button>
-								<button data-listing-id={listing._id} onClick={props.deleteListing} >Delete Listing</button>
-							</li>
+
 						</ul>
 
 					</li>
@@ -65,7 +92,13 @@ function Listings (props) {
 
 			</div>
 			)
+
+
+
+
+
+	}
 }
 
 
-export default Listings;
+export default ListingIndex;
