@@ -121,7 +121,11 @@ class Account extends React.Component {
 
 			const parsedResponse = await deleteAccountResponse.json()
 			// console.log(parsedResponse);
-			this.props.history.push('/home');
+
+
+			this.getUserListings(this.state.userId)
+
+
 		}catch(err){
 			console.log(err);
 		}
@@ -162,20 +166,25 @@ class Account extends React.Component {
 		console.log(this.props);
 		console.log('hit the deleteListing button');
 			console.log(e.currentTarget.dataset.listingId);
-			const listingId = e.currentTarget.dataset.listingId
+			const listingId = e.currentTarget.dataset.listingId;
 
 			try{
-			const deleteListingResponse = await fetch(process.env.REACT_APP_BACKEND_URL + `/listing/${listingId}`,{
+
+			const deleteListingResponse = await fetch(process.env.REACT_APP_BACKEND_URL + `/api/v1/listing/${listingId}`, {
 				method: 'DELETE', 
 				credentials: 'include',
 				headers: {
 				  'Content-Type': 'application/json'
 				}
 			})
-			const parsedResponse = await deleteListingResponse.json();
-			console.log(parsedResponse);
-			await this.props.getUserListings()
 
+			const parsedResponse = await deleteListingResponse.json();
+
+			console.log(parsedResponse);
+
+			this.getUserListings(this.state.userId)
+
+			this.props.history.push('/account');
 		}catch(err){
 			console.log(err);
 		}
@@ -238,7 +247,7 @@ class Account extends React.Component {
 						<br />
 						<br />
 						<h3 id="listingHeader">Listings:</h3>
-						<Listings listings={this.state.listings} />
+						<Listings listings={this.state.listings} deleteListing={this.deleteListing} />
 					</div>
 					)
 			}
