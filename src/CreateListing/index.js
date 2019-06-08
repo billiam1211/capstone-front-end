@@ -16,14 +16,22 @@ class CreateListing extends Component {
 	}
 
 
+
+
 	handleChange = (e) => {
 		this.setState({[e.target.name]: e.target.value});
 	}
+
+
+
 
 	handleSelectChange = (e) => {
 		this.setState({category: e.target.value});
 		// console.log(this.state);
 	}
+
+
+
 
 	// this function selects a file that the user specifies using the form
 	fileSelectedHandler = (event) => {
@@ -32,6 +40,8 @@ class CreateListing extends Component {
 			selectedFile: event.target.files[0]
 		})
 	}
+
+
 
 
 	// this function uploads the selected file by sending it to the specified route
@@ -55,10 +65,11 @@ class CreateListing extends Component {
 		.then(res => {
 			console.log(res);
 		})
-		
 		this.props.history.push('/account');
-
 	}
+
+
+
 
 	handleSubmit = (e) => {
 		e.preventDefault()
@@ -66,6 +77,8 @@ class CreateListing extends Component {
 		//line below causes everything to crash...
 		this.fileUploadHandler();
 	}
+
+
 
 
 
@@ -102,6 +115,9 @@ class CreateListing extends Component {
 			)
 	}
 }
+
+
+
 
 
 export default CreateListing;

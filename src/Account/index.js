@@ -12,20 +12,16 @@ class Account extends React.Component {
 		this.state = ({
 			email: props.globalState.email,
 			userId: props.globalState.userId,
-			listings: [],
-			// showAccountEdit: false,
-			// showCreateListing: false,
-			// showEditListing: false,
-			// editListingId: ''
+			listings: []
 		})
 	}
 
 
-	componentDidMount(){
 
+	// UPON PAGE RENDER AUTOMATICALLLY POPULATES THE USERS ACTIVE LISTINGS
+	componentDidMount(){
 		this.getUserListings(this.state.userId)
 	}
-
 
 
 
@@ -43,13 +39,9 @@ class Account extends React.Component {
 	  })
 	  const parsedResponse = await listingResponse.json();
 	  console.log('PARSED RESPONSE: ', parsedResponse);
-
 	  this.setState({
 	  	listings: parsedResponse.data.listings
 	  })
-
-
-
 	}catch(err){
 	  console.log(err);
 		}
@@ -78,7 +70,6 @@ class Account extends React.Component {
 				}
 			})
 			const  parsedResponse = await logoutResponse.json()
-
 			const info = {
 		      email: '',
 		      userId: '',
@@ -92,6 +83,7 @@ class Account extends React.Component {
 			console.log(err);
 		}
 	}
+
 
 
 
@@ -110,7 +102,6 @@ class Account extends React.Component {
 		e.preventDefault()
 		console.log('delete account button clicked');
 		try{
-
 			const deleteAccountResponse = await fetch(process.env.REACT_APP_BACKEND_URL + `/api/v1/user/${this.state.userId}`,{
 				method: 'DELETE', 
 				credentials: 'include',
@@ -118,22 +109,13 @@ class Account extends React.Component {
 				  'Content-Type': 'application/json'
 				}
 			})
-
 			const parsedResponse = await deleteAccountResponse.json()
 			// console.log(parsedResponse);
-
-
 			this.getUserListings(this.state.userId)
-
-
 		}catch(err){
 			console.log(err);
 		}
 	}
-
-
-
-
 
 
 
@@ -143,21 +125,7 @@ class Account extends React.Component {
 		e.preventDefault();
 		console.log('handle create new listing ');
         this.props.history.push('/CreateListing');
-
-
 	}
-
-
-	// // RESETS THE TRIGGER FOR SHOW CREATE NEW LISTING COMPONENT
-	// resetTrigger = (e) => {
-	// 	console.log('reset show create listing trigger was hit');
-
-	// 	this.setState({
-	// 		showCreateListing: false,
-	// 		showEditListing: false
-	// 	})
-
-	// }
 
 
 
