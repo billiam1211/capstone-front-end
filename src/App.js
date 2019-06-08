@@ -12,7 +12,7 @@ import Listings             from './Listings';
 import Footer               from './Footer';
 import AccountEdit          from './AccountEdit';
 import ListingIndex         from './ListingIndex';
-
+import Guest                from './Guest';
 
 
 class App extends Component {
@@ -55,8 +55,9 @@ class App extends Component {
           <Route path='/register' render={ (props) => <Register {...props}  setUserInfo={this.setUserInfo}/> } />
           <Route path="/account" render={ (props) => <Account {...props} globalState={this.state} setUserInfo={this.setUserInfo} /> } />
           <Route path="/accountEdit" render={ (props) => <AccountEdit {...props} globalState={this.state} setUserInfo={this.setUserInfo} /> } />
-          <Route path="/index" component={ ListingIndex } />
+          <Route path="/index" render={ (props) => <ListingIndex {...props} globalState={this.state} /> } />
           <Route path="/CreateListing" render={ (props) => <CreateListing {...props} globalState={this.state} setUserInfo={this.setUserInfo} /> } />
+          <Route path="/guest" component={Guest} />
 
         </Switch>
         <Footer />

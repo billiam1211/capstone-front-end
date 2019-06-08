@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import ListingShow from '../ListingShow';
+import Guest from '../Guest';
 
 
 
 class ListingIndex extends Component {
-	constructor(){
+	constructor(props){
 		super()
 		this.state = {
 			listings: [],
 			listingToShow: [],
-			indexOfListingToShow: -1
+			indexOfListingToShow: -1,
+			loggedIn: props.globalState.loggedIn
 		}
 	}
 
@@ -63,70 +65,77 @@ class ListingIndex extends Component {
 
 
 	render(){
-		console.log(this.state);
-
-		if(this.state.indexOfListingToShow != -1){
-
-			return(
-				<ListingShow state={this.state} back={this.back} />
-				)
-		} else{
-			const arrayBufferToBase64 = (buffer) => {
-				    let binary = '';
-				    let bytes = [].slice.call(new Uint8Array(buffer));
-				    bytes.forEach((b) => binary += String.fromCharCode(b));
-				    return window.btoa(binary);
-				}
-			// stores the mapped out listings inot a variable to render below
-			const listingLis = this.state.listings.map((listing, i) => {
-				// this calls the function above and converts the buffer to a string 
-				// for each listing so we can render the image 
-				const data = arrayBufferToBase64(listing.img.data.data)
-				return(
-						<div key={i} data-listingId={i} className="listingContainer" onClick={this.showListing}>
-							<li>
-								<ul className="listingUl">
-									<li>
-										<strong>Title:</strong> {listing.name}
-									</li>
-									<li>
-										<strong>Category:</strong> {listing.category}
-									</li>
-									<li>
-										<strong>Price:</strong> {listing.price}
-									</li>
-									<li>
-										<strong>Quantity:</strong> {listing.quantity}
-									</li>
-									<li>
-										<strong>Description:</strong> {listing.description}
-									</li>
-
-								</ul>
-
-							</li>
-							<img src={`data:image/jpeg;base64,${data}`} /><br/>
+		// console.log(this.state);
+		if(this.state.loggedIn == false){
+		 			return(
+		 				<div>
+		 					<Guest />
 						</div>
-					)
-			})
-				return(
-					<div>
-						<select name="category" placeholder="category">
-							<option value="apparel">Apparel</option>
-							<option value="ceremony">Ceremony</option>
-							<option value="partyfavors">Party favors</option>
-							<option value="decorations">Decorations</option>
-							<option value="reception">Reception</option>
-							<option value="other">Other</option>
-						</select> 
-						<div className="listingDiv">
-							<ul>
-								{ listingLis }
-							</ul>
-						</div>
-					</div>
-					)
-		}
+		 				)
+		 		} else {
+		 			if(this.state.indexOfListingToShow != -1){
+						return(
+							<ListingShow state={this.state} back={this.back} />
+							)
+
+		 			} else{
+						const arrayBufferToBase64 = (buffer) => {
+							    let binary = '';
+							    let bytes = [].slice.call(new Uint8Array(buffer));
+							    bytes.forEach((b) => binary += String.fromCharCode(b));
+							    return window.btoa(binary);
+							}
+						// stores the mapped out listings inot a variable to render below
+						const listingLis = this.state.listings.map((listing, i) => {
+							// this calls the function above and converts the buffer to a string 
+							// for each listing so we can render the image 
+							const data = arrayBufferToBase64(listing.img.data.data)
+							return(
+									<div key={i} data-listingId={i} className="listingContainer" onClick={this.showListing}>
+										<li>
+											<ul className="listingUl">
+												<li>
+													<strong>Title:</strong> {listing.name}
+												</li>
+												<li>
+													<strong>Category:</strong> {listing.category}
+												</li>
+												<li>
+													<strong>Price:</strong> {listing.price}
+												</li>
+												<li>
+													<strong>Quantity:</strong> {listing.quantity}
+												</li>
+												<li>
+													<strong>Description:</strong> {listing.description}
+												</li>
+
+											</ul>
+
+										</li>
+										<img src={`data:image/jpeg;base64,${data}`} /><br/>
+									</div>
+								)
+						})
+							return(
+								<div>
+									<select name="category" placeholder="category">
+										<option value="apparel">Apparel</option>
+										<option value="ceremony">Ceremony</option>
+										<option value="partyfavors">Party favors</option>
+										<option value="decorations">Decorations</option>
+										<option value="reception">Reception</option>
+										<option value="other">Other</option>
+									</select> 
+									<div className="listingDiv">
+										<ul>
+											{ listingLis }
+										</ul>
+									</div>
+								</div>
+								)
+						}
+		 			}
 	}
 }
 

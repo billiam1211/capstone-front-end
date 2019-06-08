@@ -3,7 +3,7 @@ import Listings from '../Listings';
 import AccountEdit from '../AccountEdit';
 import CreateListing from '../CreateListing';
 import EditListing from '../EditListing';
-
+import Guest from '../Guest';
 
 
 class Account extends React.Component {
@@ -12,7 +12,8 @@ class Account extends React.Component {
 		this.state = ({
 			email: props.globalState.email,
 			userId: props.globalState.userId,
-			listings: []
+			listings: [],
+			loggedIn: props.globalState.loggedIn
 		})
 	}
 
@@ -179,47 +180,56 @@ class Account extends React.Component {
 	render(){
  		console.log(this.props.globalState.email, 'account global state');
  		console.log('ACCOUNT STATE: ', this.state.listings);
-		if(this.state.listings.length == 0){
-			return(
-				<div className="form">
-					<h1>Account</h1>
-					<h3>Email:</h3>
-					<p>{this.state.email}</p>
-					<h3>User Id:</h3>
-					<p>{this.state.userId}</p>
-					<button onClick={this.handleCreateNewListing}>Create New Listing</button>
-					<button onClick={this.handleLogout}	>Logout</button>
-					<button onClick={this.handleEditAccount}>Edit Account</button>
-					<button onClick={this.handleDeleteAccount}>Delete Account</button>
-					<br />
-					<br />
-					<p>You don't have any listings yet <br /> 
-					Click 'Create Listing' to post an item for sale</p>	
-					<br /> 	<br /> <br /> <br /> <br /> 
+ 		if(this.state.loggedIn == false){
+ 			return(
+ 				<div>
+ 					<Guest />
 				</div>
-				)
-		} else {
-			if(this.state.listings.length > 0){
-				return(
-					<div className="form">
-						<h1>Account</h1>
-						<h3>Email:</h3>
-						<p>{this.state.email}</p>
-						<h3>User Id:</h3>
-						<p>{this.state.userId}</p>
-						<button onClick={this.handleCreateNewListing}>Create New Listing</button>
-						<button onClick={this.handleLogout}	>Logout</button>
-						<button onClick={this.handleEditAccount}>Edit Account</button>
-						<button onClick={this.handleDeleteAccount}>Delete Account</button>
-						<br />
-						<br />
-						<br />
-						<h3 id="listingHeader">Listings:</h3>
-						<Listings listings={this.state.listings} deleteListing={this.deleteListing} />
-					</div>
-					)
-			}
-		}
+ 				)
+ 		} else {
+			if(this.state.listings.length == 0){
+						return(
+							<div className="form">
+								<h1>Account</h1>
+								<h3>Email:</h3>
+								<p>{this.state.email}</p>
+								<h3>User Id:</h3>
+								<p>{this.state.userId}</p>
+								<button onClick={this.handleCreateNewListing}>Create New Listing</button>
+								<button onClick={this.handleLogout}	>Logout</button>
+								<button onClick={this.handleEditAccount}>Edit Account</button>
+								<button onClick={this.handleDeleteAccount}>Delete Account</button>
+								<br />
+								<br />
+								<p>You don't have any listings yet <br /> 
+								Click 'Create Listing' to post an item for sale</p>	
+								<br /> 	<br /> <br /> <br /> <br /> 
+							</div>
+							)
+			 		} else {
+			 			if(this.state.listings.length > 0){
+							return(
+								<div className="form">
+									<h1>Account</h1>
+									<h3>Email:</h3>
+									<p>{this.state.email}</p>
+									<h3>User Id:</h3>
+									<p>{this.state.userId}</p>
+									<button onClick={this.handleCreateNewListing}>Create New Listing</button>
+									<button onClick={this.handleLogout}	>Logout</button>
+									<button onClick={this.handleEditAccount}>Edit Account</button>
+									<button onClick={this.handleDeleteAccount}>Delete Account</button>
+									<br />
+									<br />
+									<br />
+									<h3 id="listingHeader">Listings:</h3>
+									<Listings listings={this.state.listings} deleteListing={this.deleteListing} />
+								</div>
+								)	
+			 			}
+			 		}
+
+ 		} 
 	}
 }
 
