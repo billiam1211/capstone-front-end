@@ -13,6 +13,7 @@ const Header = () => {
             <Link to="/index"> <h3>Listings</h3> </Link>
 	        <Link to="/account"> <h3>My Account</h3></Link>
 	        <Link to="/register"> <h3>Register</h3> </Link> 
+            <Link to="/about"><h3>About</h3></Link>
 
         </div>
     </header>

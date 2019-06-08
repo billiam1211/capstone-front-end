@@ -89,7 +89,9 @@ class Register extends Component {
                       <input type="password" name="confirmPassword" placeholder="confirm password" onChange={this.handleChange} /> <br />
         		          <button type="submit">Register</button>
         		          <h3> { this.state.msg } </h3>
+                    <img src="https://www.zola.com/blog/wp-content/uploads/2015/12/carfeatured.png"/>
         		        </form>
+
         			</div>
         	  )
           }

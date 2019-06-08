@@ -63,6 +63,12 @@ class ListingIndex extends Component {
 	}
 
 
+	contactSeller = () => {
+		console.log('contact the dang seller');
+		this.props.history.push('/contactSeller')
+	}
+
+
 
 	render(){
 		// console.log(this.state);
@@ -75,7 +81,7 @@ class ListingIndex extends Component {
 		 		} else {
 		 			if(this.state.indexOfListingToShow != -1){
 						return(
-							<ListingShow state={this.state} back={this.back} />
+							<ListingShow state={this.state} back={ this.back } contactSeller={ this.contactSeller } />
 							)
 
 		 			} else{

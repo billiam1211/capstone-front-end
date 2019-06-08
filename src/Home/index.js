@@ -26,8 +26,8 @@ class Home extends Component{
 			<p>
 				Click Register to sign up today!
 			</p>
+			<Link to="/register"><button>Register New Account</button></Link> <br /> 
 			<Link to="/login"><button>Login</button></Link>
-			<Link to="/register"><button>Register</button></Link>
 		</div>
 		)
   }

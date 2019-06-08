@@ -35,8 +35,8 @@ const arrayBufferToBase64 = (buffer) => {
 								<strong>Description:</strong> {props.state.listingToShow.description}
 							</li>
 
-							<button onClick={props.back}>Back to Index</button>
-							<button>Contact Seller</button>
+							<button onClick={ props.back }>Back to Index</button>
+							<button onClick={ props.contactSeller }>Contact Seller</button>
 
 						</ul>
 					</li>

@@ -102,6 +102,18 @@ footer {
     font-size: 14pt;
     margin-left: auto;
     margin-right: auto;
+    height: 100%;
+}
+
+.guestForm {
+    background-color: rgba(255, 255, 255, .7);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 14pt;
+    margin-left: auto;
+    margin-right: auto;
+    height: 400px;
 }
 
 .listingDiv {
@@ -127,6 +139,31 @@ footer {
     overflow: auto;
 }
 
+.message {
+    width: 350px;
+    padding: 25px;
+    margin-right: auto;
+    margin-left: auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgba(255, 255, 255, .8);
+    border: 35px solid;
+    border-image: url(https://png.pngtree.com/png_detail/20181017/european-gorgeous-vintage-photo-frames-png-clipart_1408689.png) 50 round;
+    border-radius: 0%;
+}
+
+.about {
+    display: flex;
+    flex-direction: column;
+/*    background-color: rgba(255, 255, 255, .7);
+*/    text-align: left;
+    font-size: 14pt;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #headerDiv {
     background-color: rgba(255, 255, 255, .5);
     display: flex;
@@ -142,6 +179,12 @@ footer {
     justify-content: space-around;
     height: 100px;
     width: auto;
+}
+
+#inputBig {
+    height: 200px;
+    width: 194px;
+    word-wrap: all;
 }
 
 
