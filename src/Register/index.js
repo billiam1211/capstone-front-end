@@ -11,24 +11,27 @@ class Register extends Component {
       email: '',
       userId: '',
       loggedIn: false,
-      registerMsg: '',
-      showAccount: false,
+      msg: '',
       registered: false
     }
   }
+
+
+
+
 
   handleChange = (e) => {
     this.setState({[e.target.name]: e.target.value});
   }
 
 
+
+
   // HANDLES NEW USER REGISTRATION
   handleRegister = async (e) => {
     e.preventDefault();
 
-
     try{
-
 
       const registerResponse = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/user/register', {
         method: 'POST', 
@@ -41,19 +44,26 @@ class Register extends Component {
 
       const parsedResponse = await registerResponse.json();
       console.log("register response: ", parsedResponse)
-
       const message = parsedResponse.msg
 
       this.setState({
         email: parsedResponse.data.email,
         userId: parsedResponse.data._id,
-        registerMsg: parsedResponse.msg,
+        msg: parsedResponse.msg,
         loggedIn: true,
-        showAccount:true,
-        registered: true
+        registered: true,
+        showAccount:true
       })
 
-
+      const info = {
+        email: parsedResponse.data.email,
+        userId: parsedResponse.data._id,
+        msg: parsedResponse.msg,
+        loggedIn: true,
+        registered: true
+      }
+      this.props.setUserInfo(info);
+      this.props.history.push('/account');
 
     }catch(err){
       console.log(err);
@@ -61,14 +71,15 @@ class Register extends Component {
   }
 
 
+
+
+
+
+
 	render(){
     // console.log(this.state);
     console.log(this.props, 'register component props');
-    if(this.state.showAccount){
-          return(
-            <Account state={this.state} history={this.props.history}/>
-            )
-        } else {
+
         		return(
         			<div>
         		        <form className="form" onSubmit={this.handleRegister}>
@@ -77,12 +88,11 @@ class Register extends Component {
         		          <input type="password" name="password" placeholder="password" onChange={this.handleChange} /><br />
                       <input type="password" name="confirmPassword" placeholder="confirm password" onChange={this.handleChange} /> <br />
         		          <button type="submit">Register</button>
-        		          <h3> { this.state.registerMsg } </h3>
+        		          <h3> { this.state.msg } </h3>
         		        </form>
         			</div>
         	  )
           }
-	}
 
 }
 

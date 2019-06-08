@@ -19,29 +19,24 @@ class App extends Component {
   constructor(){;
     super()
     this.state = ({
-      loggedIn: false,
-      userRegistered: false,
       email: '',
       userId: '',
-      listings: []
-
+      listings: [],
+      loggedIn: false,
     })
   }
 
-  logUserInGlobal = () => {
+
+
+  setUserInfo = (userData) => {
     this.setState({
-      loggedIn: true
+      email: userData.email,
+      userId: userData.userId,
+      loggedIn: userData.loggedIn,
+      registered: userData.registered,
+      listings: userData.listings || []
     })
   }
-
-  logUserOutGlobal = () => {
-    this.setState({
-      loggedIn: false
-    })
-  }
-
-
-
           
 
 
@@ -56,10 +51,12 @@ class App extends Component {
         <Switch>
 
           <Route path='/home' component={ Home } />
-          <Route path='/login' render={ (props) => <Login {...props} logInGlobal={this.logUserInGlobal} logoutGlobal={this.logUserOutGlobal} /> } />
-          <Route path='/register' render={ (props) => <Register {...props} setRegisterGlobal={this.setRegisterGlobal} /> } />
-          <Route path="/account" render={ (props) => <Account {...props} globalState={this.state} /> } />
+          <Route path='/login' render={ (props) => <Login {...props} globalState={this.state} setUserInfo={this.setUserInfo} /> } />
+          <Route path='/register' render={ (props) => <Register {...props}  setUserInfo={this.setUserInfo}/> } />
+          <Route path="/account" render={ (props) => <Account {...props} globalState={this.state} setUserInfo={this.setUserInfo} /> } />
+          <Route path="/accountEdit" render={ (props) => <AccountEdit {...props} globalState={this.state} setUserInfo={this.setUserInfo} /> } />
           <Route path="/index" component={ ListingIndex } />
+          <Route path="/CreateListing" render={ (props) => <CreateListing {...props} globalState={this.state} setUserInfo={this.setUserInfo} /> } />
 
         </Switch>
         <Footer />

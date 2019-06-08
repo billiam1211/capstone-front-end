@@ -10,15 +10,51 @@ class Account extends React.Component {
 	constructor(props){
 		super()
 		this.state = ({
-			showAccountEdit: false,
-			email: '',
-			password: '',
-			confirmPassword:'',
-			showCreateListing: false,
-			showEditListing: false,
-			editListingId: ''
+			email: props.globalState.email,
+			userId: props.globalState.userId,
+			listings: [],
+			// showAccountEdit: false,
+			// showCreateListing: false,
+			// showEditListing: false,
+			// editListingId: ''
 		})
 	}
+
+
+	componentDidMount(){
+
+		this.getUserListings(this.state.userId)
+	}
+
+
+
+
+
+	//GETS THE LISTINGS FOR THE LOGGED IN USER
+	getUserListings = async (id) => {
+	const loggedUserId = id
+	try{
+	  const listingResponse = await fetch(process.env.REACT_APP_BACKEND_URL + `/api/v1/user/${loggedUserId}`, {
+	    method: 'GET', 
+	    credentials: 'include',
+	    headers: {
+	      'Content-Type': 'application/json'
+	    }
+	  })
+	  const parsedResponse = await listingResponse.json();
+	  console.log('PARSED RESPONSE: ', parsedResponse);
+
+	  this.setState({
+	  	listings: parsedResponse.data.listings
+	  })
+
+
+
+	}catch(err){
+	  console.log(err);
+		}
+	}
+
 
 
 
@@ -29,7 +65,7 @@ class Account extends React.Component {
 
 
 
-	// LOGS CURRENT USER OUT AND REDIRECTS TO HOME
+	// LOGS CURRENT USER OUT, RESETS GLOBAL STATE AND REDIRECTS TO HOME 
 	handleLogout = async (e) => {
 		e.preventDefault()
 		console.log('logout button clicked');
@@ -43,8 +79,14 @@ class Account extends React.Component {
 			})
 			const  parsedResponse = await logoutResponse.json()
 
-			this.props.resetLoggedIn()
-
+			const info = {
+		      email: '',
+		      userId: '',
+		      listings: [],
+		      loggedIn: false,
+		      registered: false
+			}
+			this.props.setUserInfo(info);
 			this.props.history.push("/home");
 		}catch(err){
 			console.log(err);
@@ -53,14 +95,12 @@ class Account extends React.Component {
 
 
 
-	// SETS TRIGGER TO RENDER THE ACCOUNT EDIT PAGE
+	// SENDS USER TO ACCOUNT EDIT COMPONENT 
 	handleEditAccount = (e) => {
-		console.log();
 		e.preventDefault()
 		console.log('Edit account button clicked');
-		this.setState({
-			showAccountEdit: true
-		})
+      	this.props.history.push('/accountEdit');
+
 	}
 
 
@@ -71,7 +111,7 @@ class Account extends React.Component {
 		console.log('delete account button clicked');
 		try{
 
-			const deleteAccountResponse = await fetch(process.env.REACT_APP_BACKEND_URL + `/api/v1/user/${this.props.state.userId}`,{
+			const deleteAccountResponse = await fetch(process.env.REACT_APP_BACKEND_URL + `/api/v1/user/${this.state.userId}`,{
 				method: 'DELETE', 
 				credentials: 'include',
 				headers: {
@@ -89,64 +129,35 @@ class Account extends React.Component {
 
 
 
-	// THIS METHOD IS PASSED DOWN TO THE ACCOUNT EDIT COMPONENT
-	// AND UPDATES USER, RESETS SHOW ACCOUND EDIT TRIGGER, AND
-	// REDIRECTS TO HOME
-	submitAccountUpdate = async (e) => {
-		e.preventDefault()
-		console.log('hit the submit account update route');
-		const userData = {
-			email: this.state.email,
-			password: this.state.password,
-			confirmPassword: this.state.confirmPassword
-		}
-		try{
-			const updatedAccountResponse = await fetch(process.env.REACT_APP_BACKEND_URL + `/api/v1/user/${this.props.state.userId}`,{
-				method: 'PUT', 
-				credentials: 'include',
-        		body: JSON.stringify(userData),
-				headers: {
-				  'Content-Type': 'application/json'
-				}
-			})
-			const parsedResponse = await updatedAccountResponse.json()
-			console.log(parsedResponse);
-			this.setState({
-				showAccountEdit: false
-			})
-			this.props.history.push('/home');
-		}catch(err){
-			console.log(err);
-		}
-	}
 
 
 
-	// SET TRIGGER TO RENDER THE CREATE LISTING COMPONENT
+
+
+	// // SET TRIGGER TO RENDER THE CREATE LISTING COMPONENT
 	handleCreateNewListing = (e) => {
 		e.preventDefault();
 		console.log('handle create new listing ');
-		this.setState({
-			showCreateListing: true
-		})
+        this.props.history.push('/CreateListing');
+
 
 	}
 
 
-	// RESETS THE TRIGGER FOR SHOW CREATE NEW LISTING COMPONENT
-	resetTrigger = (e) => {
-		console.log('reset show create listing trigger was hit');
+	// // RESETS THE TRIGGER FOR SHOW CREATE NEW LISTING COMPONENT
+	// resetTrigger = (e) => {
+	// 	console.log('reset show create listing trigger was hit');
 
-		this.setState({
-			showCreateListing: false,
-			showEditListing: false
-		})
+	// 	this.setState({
+	// 		showCreateListing: false,
+	// 		showEditListing: false
+	// 	})
 
-	}
+	// }
 
 
 
-	// DELETES A SPECIFIC LISTING USING THE DATA-ID PROPERTY
+	//DELETES A SPECIFIC LISTING USING THE DATA-ID PROPERTY
 	deleteListing = async (e) => {
 		console.log(this.props);
 		console.log('hit the deleteListing button');
@@ -189,58 +200,36 @@ class Account extends React.Component {
 
 
 	render(){
-		console.log(this.state);
-		// console.log(this.props.state.userId, '***logged user***');
-		// console.log(this.props, '<==');
-		if(this.state.showEditListing){
+ 		console.log(this.props.globalState.email, 'account global state');
+ 		console.log('ACCOUNT STATE: ', this.state.listings);
+		if(this.state.listings.length == 0){
 			return(
-				<div>
-					<EditListing getUserListings={this.props.getUserListings} resetTrigger={this.resetTrigger} listingId={this.state.editListingId}/>
+				<div className="form">
+					<h1>Account</h1>
+					<h3>Email:</h3>
+					<p>{this.state.email}</p>
+					<h3>User Id:</h3>
+					<p>{this.state.userId}</p>
+					<button onClick={this.handleCreateNewListing}>Create New Listing</button>
+					<button onClick={this.handleLogout}	>Logout</button>
+					<button onClick={this.handleEditAccount}>Edit Account</button>
+					<button onClick={this.handleDeleteAccount}>Delete Account</button>
+					<br />
+					<br />
+					<p>You don't have any listings yet <br /> 
+					Click 'Create Listing' to post an item for sale</p>	
+					<br /> 	<br /> <br /> <br /> <br /> 
 				</div>
 				)
 		} else {
-
-			if(this.state.showCreateListing){
-				return(
-					<div>
-						<CreateListing getUserListings={this.props.getUserListings} resetTrigger={this.resetTrigger}/>
-					</div>
-					)
-			} else {
-				if(this.state.showAccountEdit){
-							return(
-								<div>
-									<AccountEdit handleChange={this.handleChange} submitAccountUpdate={this.submitAccountUpdate} />
-								</div>
-								)
-			} else {
-				console.log(this.props);
-				if(this.props.state.registered){
-					return(
-						<div className="form">
-							<h1>Account</h1>
-							<h3>Email:  {this.props.state.email}</h3>
-							<h3>User Id:  {this.props.state.userId}</h3>
-							<button onClick={this.handleCreateNewListing}>Create New Listing</button>
-							<button onClick={this.handleLogout}>Logout</button>
-							<button onClick={this.handleEditAccount}>Edit Account</button>
-							<button onClick={this.handleDeleteAccount}>Delete Account</button>
-							<br />
-							<br />
-							<br />
-							<h3 id="listingHeader">Listings:</h3>
-							<p>You don't have any listings yet <br /> 
-							Click 'Create Listing' to post an item for sale</p>
-						</div>
-						)
-			} else {
+			if(this.state.listings.length > 0){
 				return(
 					<div className="form">
 						<h1>Account</h1>
 						<h3>Email:</h3>
-						<p>{this.props.state.email}</p>
+						<p>{this.state.email}</p>
 						<h3>User Id:</h3>
-						<p>{this.props.state.userId}</p>
+						<p>{this.state.userId}</p>
 						<button onClick={this.handleCreateNewListing}>Create New Listing</button>
 						<button onClick={this.handleLogout}	>Logout</button>
 						<button onClick={this.handleEditAccount}>Edit Account</button>
@@ -249,15 +238,9 @@ class Account extends React.Component {
 						<br />
 						<br />
 						<h3 id="listingHeader">Listings:</h3>
-						<Listings 
-							listings={ this.props.state.listings } 
-							deleteListing={ this.deleteListing } 
-							editListing={ this.editListing } 
-							/>
+						<Listings listings={this.state.listings} />
 					</div>
-					)	
-					}
-				}
+					)
 			}
 		}
 	}

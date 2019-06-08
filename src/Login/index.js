@@ -5,16 +5,15 @@ class Login extends React.Component {
   constructor(props){
     super();
     this.state = {
-      email: '',
-      listings: [],
-      userId: '',
-      loggedIn: false,
-      loginMsg: '',
-      registerMsg: '',
-      showAccount: false,
+		email: '',
+		userId: '',
+		loggedIn: false,
+		msg: ''
     }
   }
   
+
+
 
   handleChange = (e) => {
     this.setState({[e.target.name]: e.target.value});
@@ -38,74 +37,40 @@ class Login extends React.Component {
       })
 
       const parsedResponse = await loginResponse.json();
+      console.log(parsedResponse);
 
       if(parsedResponse.status === 200){
         this.setState({
-          email: parsedResponse.data.email,
-          userId: parsedResponse.data._id,
-          loginMsg: parsedResponse.msg,
-          loggedIn: true
+			email: parsedResponse.data.email,
+			userId: parsedResponse.data._id,
+			listings: [],
+			loggedIn: true,
+			msg: parsedResponse.msg
         })
+        this.props.setUserInfo(this.state)
+        this.props.history.push('/account');
 
-        this.props.logInGlobal()
+       } else {
 
-      } else {
         this.setState({
-          loginMsg: parsedResponse.msg
+          msg: 'Username or password is invalid'
         })
-      }
+        
+       }
 
-      if(this.state.email !== ''){
-        this.getUserListings()
-      }
     }catch(err){
       console.log(err);
     }
   }
 
-  // this is called when the user logs out in the account app to reset the logged in trigger to false
-  resetLoginTrigger = () => {
-    this.setState({
-      loggedIn: false
-    })
-    this.props.logoutGlobal()
-  }
 
 
-  // GETS THE LISTINGS FOR THE LOGGED IN USER
-  getUserListings = async () => {
-    const loggedUserId = this.state.userId
-    try{
-      const listingResponse = await fetch(process.env.REACT_APP_BACKEND_URL + `/api/v1/user/${loggedUserId}`, {
-        method: 'GET', 
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      const parsedResponse = await listingResponse.json();
-      console.log(parsedResponse);
-      await this.setState({
-        listings: parsedResponse.data.listings,
-        showAccount: true
-      })
-    }catch(err){
-      console.log(err);
-    }
-  }
+
 
 
   render(){
     console.log(this.state);
     console.log(this.props);
-    // console.log("login props:")
-    // console.log(this.props)
-    // console.log(this.state);
-    if(this.state.showAccount){
-      return(
-        <Account state={this.state} history={this.props.history} getUserListings={this.getUserListings} resetLoggedIn={this.resetLoginTrigger}/>
-        )
-    } else {
       return (
         <div>
           <form className="form" onSubmit={this.handleLogin}>
@@ -113,11 +78,10 @@ class Login extends React.Component {
             <input type="text" name="email" placeholder="enter email" onChange={this.handleChange} /> <br />
             <input type="password" name="password" placeholder="enter password" onChange={this.handleChange} /> <br />
             <button type="submit">Login</button>
-            <h3> { this.state.loginMsg } </h3>
+            <h3> { this.state.msg } </h3>
           </form>
         </div>
       )
-    }
   }
 }
 

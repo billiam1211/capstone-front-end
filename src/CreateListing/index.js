@@ -55,8 +55,9 @@ class CreateListing extends Component {
 		.then(res => {
 			console.log(res);
 		})
-		this.props.getUserListings();
-		this.props.resetTrigger();
+		
+		this.props.history.push('/account');
+
 	}
 
 	handleSubmit = (e) => {
