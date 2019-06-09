@@ -8,7 +8,7 @@ class CreateListing extends Component {
 		this.state = {
 			selectedFile: null,
 			name: '',
-			category: '',
+			category: 'apparel',
 			price: '',
 			quantity: '',
 			description: ''
