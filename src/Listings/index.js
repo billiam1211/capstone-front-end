@@ -36,8 +36,8 @@ function Listings (props) {
 								<strong>Description:</strong> {listing.description}
 							</li>
 							<li>
-								<button data-listing-id={listing._id} onClick={props.editListing} >Edit Listing</button>
-								<button data-listing-id={listing._id} onClick={props.deleteListing} >Delete Listing</button>
+								<button data-listing-id={listing._id} onClick={props.editListing}>Edit Listing</button>
+								<button data-listing-id={listing._id} onClick={props.deleteListing}>Delete Listing</button>
 							</li>
 						</ul>
 					</li>

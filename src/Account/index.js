@@ -13,7 +13,10 @@ class Account extends React.Component {
 			email: props.globalState.email,
 			userId: props.globalState.userId,
 			listings: [],
-			loggedIn: props.globalState.loggedIn
+			loggedIn: props.globalState.loggedIn,
+			listingId: '',
+			listingToEditId: '',
+			showEditListing: false
 		})
 	}
 
@@ -30,7 +33,9 @@ class Account extends React.Component {
 	//GETS THE LISTINGS FOR THE LOGGED IN USER
 	getUserListings = async (id) => {
 	const loggedUserId = id
+
 	try{
+
 	  const listingResponse = await fetch(process.env.REACT_APP_BACKEND_URL + `/api/v1/user/${loggedUserId}`, {
 	    method: 'GET', 
 	    credentials: 'include',
@@ -38,11 +43,14 @@ class Account extends React.Component {
 	      'Content-Type': 'application/json'
 	    }
 	  })
+
 	  const parsedResponse = await listingResponse.json();
 	  console.log('PARSED RESPONSE: ', parsedResponse);
+
 	  this.setState({
 	  	listings: parsedResponse.data.listings
 	  })
+
 	}catch(err){
 	  console.log(err);
 		}
@@ -167,8 +175,17 @@ class Account extends React.Component {
 		console.log('hit the edit listing function');
 		console.log(e.currentTarget.dataset.listingId)
 		this.setState({
-			showEditListing: true,
-			editListingId: e.currentTarget.dataset.listingId
+			listingToEditId: e.currentTarget.dataset.listingId,
+			showEditListing: true
+		})
+
+	}
+
+
+
+	resetTrigger = () => {
+		this.setState({
+			showEditListing: false
 		})
 	}
 
@@ -187,29 +204,16 @@ class Account extends React.Component {
 				</div>
  				)
  		} else {
-			if(this.state.listings.length == 0){
-						return(
-							<div className="form">
-								<div className="inForm">
-									<h1>Account</h1>
-									<h3>Email:</h3>
-									<p>{this.state.email}</p>
-									<h3>User Id:</h3>
-									<p>{this.state.userId}</p>
-								</div>
-								<button onClick={this.handleCreateNewListing}>Create New Listing</button>
-								<button onClick={this.handleLogout}	>Logout</button>
-								<button onClick={this.handleEditAccount}>Edit Account</button>
-								<button onClick={this.handleDeleteAccount}>Delete Account</button>
-								<br />
-								<br />
-								<p>You don't have any listings yet <br /> 
-								Click 'Create Listing' to post an item for sale</p>	
-								<br /> 	<br /> <br /> <br /> <br /> 
-							</div>
-							)
-			 		} else {
-			 			if(this.state.listings.length > 0){
+
+			if(this.state.showEditListing){
+				return(
+					<EditListing resetTrigger={this.resetTrigger} state={this.state} getUserListings={this.getUserListings} />
+					)
+			
+	 		} else {
+
+
+				if(this.state.listings.length == 0){
 							return(
 								<div className="form">
 									<div className="inForm">
@@ -219,19 +223,44 @@ class Account extends React.Component {
 										<h3>User Id:</h3>
 										<p>{this.state.userId}</p>
 									</div>
-									<div className="buttonWrapper">
-										<button onClick={this.handleCreateNewListing}>Create New Listing</button>
-										<button onClick={this.handleLogout}>Logout</button>
-										<button onClick={this.handleEditAccount}>Edit Account</button>
-										<button onClick={this.handleDeleteAccount}>Delete Account</button>
-									</div>
+									<button onClick={this.handleCreateNewListing}>Create New Listing</button>
+									<button onClick={this.handleLogout}	>Logout</button>
+									<button onClick={this.handleEditAccount}>Edit Account</button>
+									<button onClick={this.handleDeleteAccount}>Delete Account</button>
 									<br />
 									<br />
-									<br />
-									<h3 id="listingHeader">Listings:</h3>
-									<Listings listings={this.state.listings} deleteListing={this.deleteListing} />
+									<p>You don't have any listings yet <br /> 
+									Click 'Create Listing' to post an item for sale</p>	
+									<br /> 	<br /> <br /> <br /> <br /> 
 								</div>
-								)	
+								)
+
+			 			} else {
+
+				 			if(this.state.listings.length > 0){
+								return(
+									<div className="form">
+										<div className="inForm">
+											<h1>Account</h1>
+											<h3>Email:</h3>
+											<p>{this.state.email}</p>
+											<h3>User Id:</h3>
+											<p>{this.state.userId}</p>
+										</div>
+										<div className="buttonWrapper">
+											<button onClick={this.handleCreateNewListing}>Create New Listing</button>
+											<button onClick={this.handleLogout}>Logout</button>
+											<button onClick={this.handleEditAccount}>Edit Account</button>
+											<button onClick={this.handleDeleteAccount}>Delete Account</button>
+										</div>
+										<br />
+										<br />
+										<br />
+										<h3 id="listingHeader">Listings:</h3>
+										<Listings listings={this.state.listings} editListing={this.editListing} deleteListing={this.deleteListing} />
+									</div>
+									)	
+							}
 			 			}
 			 		}
 
@@ -240,4 +269,20 @@ class Account extends React.Component {
 }
 
 
+
+
 export default Account;
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -11,7 +11,6 @@ class Register extends Component {
       email: '',
       userId: '',
       loggedIn: false,
-      msg: '',
       registered: false,
       msg: ''
     }
@@ -69,7 +68,7 @@ class Register extends Component {
         loggedIn: true,
         registered: true
       }
-      
+
       this.props.setUserInfo(info);
       this.props.history.push('/account');
 
