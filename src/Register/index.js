@@ -12,10 +12,10 @@ class Register extends Component {
       userId: '',
       loggedIn: false,
       msg: '',
-      registered: false
+      registered: false,
+      msg: ''
     }
   }
-
 
 
 
@@ -46,14 +46,21 @@ class Register extends Component {
       console.log("register response: ", parsedResponse)
       const message = parsedResponse.msg
 
-      this.setState({
-        email: parsedResponse.data.email,
-        userId: parsedResponse.data._id,
-        msg: parsedResponse.msg,
-        loggedIn: true,
-        registered: true,
-        showAccount:true
-      })
+      if(parsedResponse.status == 200){
+        this.setState({
+          email: parsedResponse.data.email,
+          userId: parsedResponse.data._id,
+          msg: parsedResponse.msg,
+          loggedIn: true,
+          registered: true,
+          showAccount:true
+        })
+      } else {
+        this.setState({
+          msg: parsedResponse.msg
+        })
+      }
+
 
       const info = {
         email: parsedResponse.data.email,
@@ -62,6 +69,7 @@ class Register extends Component {
         loggedIn: true,
         registered: true
       }
+      
       this.props.setUserInfo(info);
       this.props.history.push('/account');
 

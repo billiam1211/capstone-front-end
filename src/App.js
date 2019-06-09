@@ -52,7 +52,6 @@ class App extends Component {
       <main>
         <Header />
         <Switch>
-
           <Route path='/home' component={ Home } />
           <Route path='/login' render={ (props) => <Login {...props} globalState={this.state} setUserInfo={this.setUserInfo} /> } />
           <Route path='/register' render={ (props) => <Register {...props}  setUserInfo={this.setUserInfo}/> } />
@@ -63,6 +62,7 @@ class App extends Component {
           <Route path="/guest" component={Guest} />
           <Route path="/contactSeller" render={ (props) => <ContactSeller {...props} globalState={this.state} setUserInfo={this.setUserInfo} /> } />
           <Route path="/about" component={ About } />
+          <Route path='/' component={ Home } />
         </Switch>
         <Footer />
       </main>

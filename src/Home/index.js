@@ -16,16 +16,14 @@ class Home extends Component{
 
 			
 		<div className="form">
-			<h1 className="pulse">Welcome To Wedding Exchange</h1>
+			<h1 className="animated 1s flipInX">Welcome To Wedding Exchange</h1>
 			<h3>
 				Wedding Exchange is the premier online platform for connecting individuals that want to 
 				buy, sell, and trade wedding goods.<br/><br/>
 			</h3>
-			<img alt="wedding-planning-photo" src="https://www.hellomagazine.com/imagenes/brides/2019011066459/wedding-planning-apps-for-brides/0-313-188/wedding-planning-t.jpg"/>
+			<img  className="animated fadeInUpBig" alt="wedding-planning-photo" src="https://www.hellomagazine.com/imagenes/brides/2019011066459/wedding-planning-apps-for-brides/0-313-188/wedding-planning-t.jpg"/>
 				
-			<p>
-				Click Register to sign up today!
-			</p>
+			<br />
 			<Link to="/register"><button>Register New Account</button></Link> <br /> 
 			<Link to="/login"><button>Login</button></Link>
 		</div>

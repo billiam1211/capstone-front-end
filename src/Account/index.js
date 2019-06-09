@@ -112,7 +112,7 @@ class Account extends React.Component {
 			})
 			const parsedResponse = await deleteAccountResponse.json()
 			// console.log(parsedResponse);
-			this.getUserListings(this.state.userId)
+			this.props.history.push('/home')
 		}catch(err){
 			console.log(err);
 		}
@@ -178,8 +178,8 @@ class Account extends React.Component {
 
 
 	render(){
- 		console.log(this.props.globalState.email, 'account global state');
- 		console.log('ACCOUNT STATE: ', this.state.listings);
+ 		console.log(this.props.globalState, 'account global state');
+ 		console.log('ACCOUNT STATE: ', this.state);
  		if(this.state.loggedIn == false){
  			return(
  				<div>
@@ -190,11 +190,13 @@ class Account extends React.Component {
 			if(this.state.listings.length == 0){
 						return(
 							<div className="form">
-								<h1>Account</h1>
-								<h3>Email:</h3>
-								<p>{this.state.email}</p>
-								<h3>User Id:</h3>
-								<p>{this.state.userId}</p>
+								<div className="inForm">
+									<h1>Account</h1>
+									<h3>Email:</h3>
+									<p>{this.state.email}</p>
+									<h3>User Id:</h3>
+									<p>{this.state.userId}</p>
+								</div>
 								<button onClick={this.handleCreateNewListing}>Create New Listing</button>
 								<button onClick={this.handleLogout}	>Logout</button>
 								<button onClick={this.handleEditAccount}>Edit Account</button>
@@ -210,15 +212,19 @@ class Account extends React.Component {
 			 			if(this.state.listings.length > 0){
 							return(
 								<div className="form">
-									<h1>Account</h1>
-									<h3>Email:</h3>
-									<p>{this.state.email}</p>
-									<h3>User Id:</h3>
-									<p>{this.state.userId}</p>
-									<button onClick={this.handleCreateNewListing}>Create New Listing</button>
-									<button onClick={this.handleLogout}	>Logout</button>
-									<button onClick={this.handleEditAccount}>Edit Account</button>
-									<button onClick={this.handleDeleteAccount}>Delete Account</button>
+									<div className="inForm">
+										<h1>Account</h1>
+										<h3>Email:</h3>
+										<p>{this.state.email}</p>
+										<h3>User Id:</h3>
+										<p>{this.state.userId}</p>
+									</div>
+									<div className="buttonWrapper">
+										<button onClick={this.handleCreateNewListing}>Create New Listing</button>
+										<button onClick={this.handleLogout}>Logout</button>
+										<button onClick={this.handleEditAccount}>Edit Account</button>
+										<button onClick={this.handleDeleteAccount}>Delete Account</button>
+									</div>
 									<br />
 									<br />
 									<br />
