@@ -71,13 +71,16 @@ class Login extends React.Component {
   render(){
     console.log(this.state);
       return (
-        <div>
+        <div class="loginContainer">
           <form className="form" onSubmit={this.handleLogin}>
             <h3>Login</h3>
             <input type="text" name="email" placeholder="enter email" onChange={this.handleChange} /> <br />
             <input type="password" name="password" placeholder="enter password" onChange={this.handleChange} /> <br />
             <button type="submit">Login</button>
             <h3> { this.state.msg } </h3>
+            <div>
+
+            </div>
           </form>
         </div>
       )

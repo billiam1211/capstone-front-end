@@ -7,7 +7,7 @@ body {
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
-    margin-bottom: 100px;
+
     overflow: scroll;
 }
 
@@ -85,21 +85,28 @@ select {
     margin: 5px;
 }
 
+header {
+    border: 15px solid;
+    border-image: url(http://www.emilyalder.com/wp-content/uploads/2015/09/24x24_square_8.png) 20 round;
+}
+
 footer {
+    border: 15px solid;
+    border-image: url(http://www.emilyalder.com/wp-content/uploads/2015/09/24x24_square_8.png) 20 round;
     background-color: rgba(255, 255, 255, .5);
     position: fixed;
     bottom: 0px;
     width: 100%;
+    margin-top: 10px;
 }
 
 .form {
+    text-align: center;
     height: 100%;
-    background-color: rgba(255, 255, 255, .7);
+    background-color: rgba(255, 255, 255, .6);
     padding: 20px;
     text-align: center;
-    font-size: 14pt;
-    margin-left: auto;
-    margin-right: auto;
+    height: 1000px;
 }
 
 .inForm {
@@ -165,12 +172,23 @@ footer {
 
 .about {
     display: flex;
-    flex-direction: column;
-/*    background-color: rgba(255, 255, 255, .7);
-*/    text-align: left;
+    flex-direction: row;
+    justify-content: space-around;
+/*  background-color: rgba(255, 255, 255, .7);
+*/  text-align: left;
     font-size: 14pt;
     margin-left: auto;
     margin-right: auto;
+}
+
+.team{
+/*    height: 100%;
+    width: 500px;*/
+}
+
+.teamPhoto {
+    height: 200px;
+    width: auto;
 }
 
 #headerDiv {
@@ -178,8 +196,6 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    border: 25px solid;
-    border-image: url(http://www.emilyalder.com/wp-content/uploads/2015/09/24x24_square_8.png) 50 round;
 }
 
 #listingHeader {
@@ -196,6 +212,49 @@ footer {
     word-wrap: all;
     margin: 5px;
 }
+
+#homeImg {
+    height: 250px;
+}
+
+#ourStory {
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.loginContainer{
+    background: url(https://www.yourqueenslandwedding.com.au/photos/display/72-0-2014-wedding-hero-image-high-res.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    overflow: scroll;
+    height: 600px;
+
+}
+
+.aboutContainer {
+
+    background: url(http://newsmobile.in/wp-content/uploads/2017/07/Bride-Woman-Outdoor-Wallpaper-High-Res-Pics-7777-1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    overflow: scroll;
+    height: 850px;
+}
+
+.registerContainer {
+    background: url(https://longwallpapers.com/Desktop-Wallpaper/tropical-beach-wallpaper-For-Desktop-Wallpaper.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    overflow: scroll;
+    height: 600px;
+}
+
 
 
 

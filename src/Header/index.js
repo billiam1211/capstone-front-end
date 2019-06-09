@@ -8,12 +8,14 @@ const Header = () => {
 
   return (
     <header>
-    	<div id="headerDiv">
-            <Link to="/home"> <h3>Home</h3> </Link>
-            <Link to="/index"> <h3>Listings</h3> </Link>
-	        <Link to="/account"> <h3>My Account</h3></Link>
-	        <Link to="/register"> <h3>Register</h3> </Link> 
-            <Link to="/about"><h3>About</h3></Link>
+        <div className="container">
+        	<div id="headerDiv">
+                <Link to="/home"> <h4>Home</h4> </Link>
+                <Link to="/index"> <h4>Listings</h4> </Link>
+    	        <Link to="/account"> <h4>My Account</h4></Link>
+    	        <Link to="/register"> <h4>Register</h4> </Link> 
+                <Link to="/about"><h4>About</h4></Link>
+            </div>
         </div>
     </header>
     )

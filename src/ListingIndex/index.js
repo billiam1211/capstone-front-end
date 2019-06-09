@@ -125,14 +125,7 @@ class ListingIndex extends Component {
 						})
 							return(
 								<div>
-									<select name="category" placeholder="category">
-										<option value="apparel">Apparel</option>
-										<option value="ceremony">Ceremony</option>
-										<option value="partyfavors">Party favors</option>
-										<option value="decorations">Decorations</option>
-										<option value="reception">Reception</option>
-										<option value="other">Other</option>
-									</select> 
+
 									<div className="listingDiv">
 										<ul>
 											{ listingLis }
