@@ -2,7 +2,6 @@ import React from 'react';
 
 
 function ListingShow (props) {
-		// console.log(props.state.listingToShow);
 		
 const arrayBufferToBase64 = (buffer) => {
 		    let binary = '';

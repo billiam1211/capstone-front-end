@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
 
-
-
-// this is the class for registering a new user 
 class Register extends Component {
   constructor(props){
     super();
@@ -42,7 +39,6 @@ class Register extends Component {
       })
 
       const parsedResponse = await registerResponse.json();
-      // console.log("register response: ", parsedResponse)
       const message = parsedResponse.msg
 
       if(parsedResponse.status === 200){
@@ -84,24 +80,22 @@ class Register extends Component {
 
 
 	render(){
-    // console.log(this.state);
-    // console.log(this.props, 'register component props');
-        		return(
-              <div className="registerContainer">
-          			<div>
-          		        <form className="form" onSubmit={this.handleRegister}>
-          		          <h3>Register</h3> 
-          		          <input type="text" name="email" placeholder="email" onChange={this.handleChange} /><br />
-          		          <input type="password" name="password" placeholder="password" onChange={this.handleChange} /><br />
-                        <input type="password" name="confirmPassword" placeholder="confirm password" onChange={this.handleChange} /> <br />
-          		          <button type="submit">Register</button>
-          		          <h3> { this.state.msg } </h3>
-                      <img alt="just married car" src="https://www.zola.com/blog/wp-content/uploads/2015/12/carfeatured.png"/>
-          		        </form>
-          			</div>
-              </div>
-        	  )
-          }
+  	return(
+      <div className="registerContainer">
+  			<div>
+  		        <form className="form" onSubmit={this.handleRegister}>
+  		          <h3>Register</h3> 
+  		          <input type="text" name="email" placeholder="email" onChange={this.handleChange} /><br /><br />
+  		          <input type="password" name="password" placeholder="password" onChange={this.handleChange} /><br /><br />
+                <input type="password" name="confirmPassword" placeholder="confirm password" onChange={this.handleChange} /> <br /><br />
+  		          <button type="submit">Register</button>
+  		          <h3> { this.state.msg } </h3>
+              <img alt="just married car"  id="carPhoto" src="https://www.zola.com/blog/wp-content/uploads/2015/12/carfeatured.png"/>
+  		        </form>
+  			</div>
+      </div>
+    )
+  }
 
 }
 

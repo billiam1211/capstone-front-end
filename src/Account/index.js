@@ -28,7 +28,7 @@ class Account extends React.Component {
 
 
 
-	//GETS THE LISTINGS FOR THE LOGGED IN USER
+	// GETS THE LISTINGS FOR THE LOGGED IN USER
 	getUserListings = async (id) => {
 	const loggedUserId = id
 	try{
@@ -40,7 +40,6 @@ class Account extends React.Component {
 	    }
 	  })
 	  const parsedResponse = await listingResponse.json();
-	  // console.log('PARSED RESPONSE: ', parsedResponse);
 	  this.setState({
 	  	listings: parsedResponse.data.listings
 	  })
@@ -62,7 +61,6 @@ class Account extends React.Component {
 	// LOGS CURRENT USER OUT, RESETS GLOBAL STATE AND REDIRECTS TO HOME 
 	handleLogout = async (e) => {
 		e.preventDefault()
-		// console.log('logout button clicked');
 		try{
 			const logoutResponse = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/auth/logout', {
 				method: 'DELETE', 
@@ -94,7 +92,6 @@ class Account extends React.Component {
 		e.preventDefault()
 		// console.log('Edit account button clicked');
       	this.props.history.push('/accountEdit');
-
 	}
 
 
@@ -112,7 +109,6 @@ class Account extends React.Component {
 				}
 			})
 			const parsedResponse = await deleteAccountResponse.json()
-			// console.log(parsedResponse);
 			this.props.history.push('/home')
 		}catch(err){
 			console.log(err);
@@ -133,9 +129,6 @@ class Account extends React.Component {
 
 	//DELETES A SPECIFIC LISTING USING THE DATA-ID PROPERTY
 	deleteListing = async (e) => {
-		// console.log(this.props);
-		// console.log('hit the deleteListing button');
-			// console.log(e.currentTarget.dataset.listingId);
 			const listingId = e.currentTarget.dataset.listingId;
 			try{
 			const deleteListingResponse = await fetch(process.env.REACT_APP_BACKEND_URL + `/api/v1/listing/${listingId}`, {
@@ -146,7 +139,6 @@ class Account extends React.Component {
 				}
 			})
 			const parsedResponse = await deleteListingResponse.json();
-			// console.log(parsedResponse);
 			this.getUserListings(this.state.userId)
 			this.props.history.push('/account');
 		}catch(err){
@@ -159,8 +151,6 @@ class Account extends React.Component {
 	//EDIT LISTING FUNCTION
 	editListing = (e) => {
 		e.preventDefault()
-		// console.log('hit the edit listing function');
-		// console.log(e.currentTarget.dataset.listingId)
 		this.setState({
 			listingToEditId: e.currentTarget.dataset.listingId,
 			showEditListing: true
@@ -182,8 +172,6 @@ class Account extends React.Component {
 
 
 	render(){
- 		// console.log(this.props.globalState, 'account global state');
- 		// console.log('ACCOUNT STATE: ', this.state);
  		if(this.state.loggedIn === false){
  			return(
  				<div>
@@ -193,6 +181,7 @@ class Account extends React.Component {
  		} else {
 
 			if(this.state.showEditListing){
+
 				return(
 					<EditListing resetTrigger={this.resetTrigger} state={this.state} getUserListings={this.getUserListings} />
 					)
@@ -202,7 +191,7 @@ class Account extends React.Component {
 
 				if(this.state.listings.length === 0){
 							return(
-						        <div class="loginContainer">
+						        <div className="loginContainer">
 									<div className="form">
 										<div className="inForm">
 											<h1>Account</h1>
@@ -219,7 +208,7 @@ class Account extends React.Component {
 										<br />
 										<p>You don't have any listings yet <br /> 
 										Click 'Create Listing' to post an item for sale</p>	
-										<br /> 	<br /> <br /> <br /> <br /> 
+										<br />
 									</div>
 								</div>
 								)
@@ -246,8 +235,7 @@ class Account extends React.Component {
 												<button onClick={this.handleDeleteAccount}>Delete Account</button>
 											</div>
 											<br />
-											<br />
-											<br />
+								
 											<h3 id="listingHeader">Listings:</h3>
 											<Listings listings={this.state.listings} editListing={this.editListing} deleteListing={this.deleteListing} />
 										</div>
@@ -266,17 +254,3 @@ class Account extends React.Component {
 
 
 export default Account;
-
-
-
-
-
-
-
-
-
-
-
-
-
-

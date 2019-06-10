@@ -6,18 +6,18 @@ function About () {
 	return(
 		<div className="aboutContainer">
 			<div className='form'>
-				<h1>Our Story</h1>
-				<h4 id='ourStory'>
+				<h2>Our Story</h2>
+				<h5 id='ourStory'>
 					Wedding Exchange is a platform that began in order to connect individuals that may be looking to purchase or sell pre-owned wedding goods. 
 					We know that wedding expenses can add up very quickly, which is why Wedding Exchange provides a platform where newly married couples can recoup 
 					some of their expenses by reselling items to other couples. <br />
 					Many items are discarded or packed up in boxes and thrown in the attic after the reception, so why not post them on Wedding-Exchange? With the extra
 					cash you can take the honeymoon you always wanted or put it towards a new house! 
-				</h4>
+				</h5>
 				<br />
 				<br />
 				<br />
-				<h2>Meet the team </h2>
+				<h2 className="form">Meet the team </h2>
 				<div className="about">
 					<div className="team">
 						<img alt="Messinia Makropoulos" className="teamPhoto" src="https://media.licdn.com/dms/image/C5603AQGM69Q7e4DyLA/profile-displayphoto-shrink_800_800/0?e=1565222400&v=beta&t=n0ZGlJSBTPSnzmDqzT12x2a61dzQPLP1u30MQq72HDk"/><br />
@@ -31,6 +31,10 @@ function About () {
 						<p>Bill completed his education at General Assembly in Chicago, where he studied to become a full-stack developer. Bill has extensive experince creating fruits arrays and instantiating cake classes. He also once made a full stack dogs application using python.</p>
 					</div>
 				</div>
+				<br />
+				<br />
+				<br />
+				<br />
 			</div>
 		</div>
 		)

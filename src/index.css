@@ -102,11 +102,9 @@ footer {
 
 .form {
     text-align: center;
-    height: 100%;
     background-color: rgba(255, 255, 255, .6);
     padding: 20px;
     text-align: center;
-    height: 1000px;
 }
 
 .inForm {
@@ -192,10 +190,11 @@ footer {
 }
 
 #headerDiv {
-    background-color: rgba(255, 255, 255, .5);
+    background-color: rgba(255, 255, 255, 1);
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin-top: 5px;
 }
 
 #listingHeader {
@@ -215,6 +214,15 @@ footer {
 
 #homeImg {
     height: 250px;
+    border: 35px solid;
+    border-image: url(https://png.pngtree.com/png_detail/20181017/european-gorgeous-vintage-photo-frames-png-clipart_1408689.png) 50 round;
+    border-radius: 0%;
+}
+
+#carPhoto {
+    height: 250px;
+    width: auto;
+    border-radius: 10%;
 }
 
 #ourStory {

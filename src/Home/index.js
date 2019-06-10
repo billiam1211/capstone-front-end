@@ -20,7 +20,7 @@ class Home extends Component{
 				</h4>
 				<img id="homeImg" alt="wedding-planning" src="https://www.hellomagazine.com/imagenes/brides/2019011066459/wedding-planning-apps-for-brides/0-313-188/wedding-planning-t.jpg" />
 				<div>
-					<Link to="/register"><button>Register New Account</button></Link>
+					<Link to="/register"><button>Register New Account</button></Link><br /><br />
 					<Link to="/login"><button>Login</button></Link>
 				</div>
 			</div>

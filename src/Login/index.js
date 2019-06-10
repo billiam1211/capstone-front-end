@@ -36,17 +36,18 @@ class Login extends React.Component {
       })
 
       const parsedResponse = await loginResponse.json();
-      // console.log(parsedResponse);
+
       if(parsedResponse.status === 200){
-        this.setState({
-			email: parsedResponse.data.email,
-			userId: parsedResponse.data._id,
-			listings: [],
-			loggedIn: true,
-			msg: parsedResponse.msg
-        })
-        this.props.setUserInfo(this.state)
-        this.props.history.push('/account');
+
+          this.setState({
+  			email: parsedResponse.data.email,
+  			userId: parsedResponse.data._id,
+  			listings: [],
+  			loggedIn: true,
+  			msg: parsedResponse.msg
+          })
+          this.props.setUserInfo(this.state)
+          this.props.history.push('/account');
 
        } else {
 
@@ -67,22 +68,21 @@ class Login extends React.Component {
 
 
   render(){
-    // console.log(this.state);
       return (
         <div className="loginContainer">
           <form className="form" onSubmit={this.handleLogin}>
             <h3>Login</h3>
             <input type="text" name="email" placeholder="enter email" onChange={this.handleChange} /> <br />
-            <input type="password" name="password" placeholder="enter password" onChange={this.handleChange} /> <br />
+            <input type="password" name="password" placeholder="enter password" onChange={this.handleChange} /> <br /><br />
             <button type="submit">Login</button>
             <h3> { this.state.msg } </h3>
-            <div>
-
-            </div>
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
           </form>
         </div>
       )
   }
 }
+
+
 
 export default Login;

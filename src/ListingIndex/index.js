@@ -23,9 +23,8 @@ class ListingIndex extends Component {
 
 
 
-	showListing = (e) => {
 		// CAPTURES THE INDEX VALUE OF THE LISTING IN THE LISTING ARRAY
-		// console.log(e.currentTarget.dataset.listingid);
+	showListing = (e) => {
 		this.setState({
 			indexOfListingToShow: e.currentTarget.dataset.listingid,
 			listingToShow: this.state.listings[e.currentTarget.dataset.listingid]
@@ -46,7 +45,6 @@ class ListingIndex extends Component {
 		})
 
 		const parsedResponse = await listings.json();
-		// console.log(parsedResponse.data);
 		this.setState({
 			listings: parsedResponse.data
 		})
@@ -64,14 +62,12 @@ class ListingIndex extends Component {
 
 
 	contactSeller = () => {
-		// console.log('contact the dang seller');
 		this.props.history.push('/contactSeller')
 	}
 
 
 
 	render(){
-		// console.log(this.state);
 		if(this.state.loggedIn === false){
 		 			return(
 		 				<div>
@@ -79,12 +75,14 @@ class ListingIndex extends Component {
 						</div>
 		 				)
 		 		} else {
+
 		 			if(this.state.indexOfListingToShow !== -1){
 						return(
 							<ListingShow state={this.state} back={ this.back } contactSeller={ this.contactSeller } />
 							)
 
 		 			} else{
+		 				
 						const arrayBufferToBase64 = (buffer) => {
 							    let binary = '';
 							    let bytes = [].slice.call(new Uint8Array(buffer));

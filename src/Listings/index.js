@@ -2,7 +2,6 @@ import React from 'react';
 
 
 function Listings (props) {
-	// console.log(props, '<----<<<');
 	// this function converts the buffer of the image to a string
 	const arrayBufferToBase64 = (buffer) => {
 		    let binary = '';

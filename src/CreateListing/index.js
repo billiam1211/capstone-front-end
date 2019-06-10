@@ -11,7 +11,8 @@ class CreateListing extends Component {
 			category: 'apparel',
 			price: '',
 			quantity: '',
-			description: ''
+			description: '',
+			uploadProgress: ''
 		}
 	}
 
@@ -27,15 +28,12 @@ class CreateListing extends Component {
 
 	handleSelectChange = (e) => {
 		this.setState({category: e.target.value});
-		// console.log(this.state);
 	}
-
 
 
 
 	// this function selects a file that the user specifies using the form
 	fileSelectedHandler = (event) => {
-		// console.log(event.target.files[0]);
 		this.setState({
 			selectedFile: event.target.files[0]
 		})
@@ -43,10 +41,8 @@ class CreateListing extends Component {
 
 
 
-
-	// this function uploads the selected file by sending it to the specified route
-	// using axios to send the post request and express-formidable is parsing the formData
-	// in the back end 
+	// FUNCTION UPLOADS THE SELECTED FILE BY SENDING IT TO THE SPECIFIED ROUTE
+	// USES AXIOS TO SEND THE POST REQ TO EXPRESS
 	fileUploadHandler = async () => {
 		// console.log('file upload working...');
 		const formData = new FormData();
@@ -56,10 +52,9 @@ class CreateListing extends Component {
 		formData.append('price', this.state.price)
 		formData.append('description', this.state.description)
 		formData.append('quantity', this.state.quantity)
-		// console.log(formData);
 		await axios.post(process.env.REACT_APP_BACKEND_URL + '/api/v1/listing/new', formData, { withCredentials: true }, {
 			onUploadProgress: progressEvent => {
-				console.log('Upload Progress: ' + Math.round((progressEvent.loaded / progressEvent.total) * 100) + '%');
+				console.log('Upload Progress: ' + Math.round((progressEvent.loaded / progressEvent.total) * 100) + '%')
 			}
 		})
 		.then(res => {
@@ -74,7 +69,6 @@ class CreateListing extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault()
 		// console.log('hit submit button on the form');
-		//line below causes everything to crash...
 		this.fileUploadHandler();
 	}
 
@@ -85,7 +79,7 @@ class CreateListing extends Component {
 
 
 	render(){
-		// console.log(this.state);
+		console.log(this.state);
 		return(
 			<div>
 				<form className="form" onSubmit={this.handleSubmit}>
@@ -103,6 +97,7 @@ class CreateListing extends Component {
 						<option value="other">Other</option>
 					</select> <br />
 					<input style={{display: 'none'}} type="file" name="img" onChange={this.fileSelectedHandler} ref={fileInput => this.fileInput = fileInput} />
+					<h3>{ this.state.uploadProgress }</h3>
 					<button className="homeBtn" onClick={ 
 						(e) => { 
 							e.preventDefault()

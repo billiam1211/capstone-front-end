@@ -9,11 +9,11 @@ const Header = () => {
     <header>
         <div className="container">
         	<div id="headerDiv">
-                <Link to="/home"> <h4>Home</h4> </Link>
-                <Link to="/index"> <h4>Listings</h4> </Link>
-    	        <Link to="/account"> <h4>My Account</h4></Link>
-    	        <Link to="/register"> <h4>Register</h4> </Link> 
-                <Link to="/about"><h4>About</h4></Link>
+                <Link to="/home"> <h5>Home</h5> </Link>
+                <Link to="/index"> <h5>Listings</h5> </Link>
+    	        <Link to="/account"> <h5>My Account</h5></Link>
+    	        <Link to="/register"> <h5>Register</h5> </Link> 
+                <Link to="/about"><h5>About</h5></Link>
             </div>
         </div>
     </header>

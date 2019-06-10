@@ -19,8 +19,7 @@ class AccountEdit extends React.Component {
 	}
 
 
-	// UPDATES USER, RESETS SHOW ACCOUND EDIT TRIGGER, AND
-	// REDIRECTS TO HOME
+	// UPDATES USER, RESETS SHOW ACCOUND EDIT TRIGGER, AND REDIRECTS TO HOME
 	submitAccountUpdate = async (e) => {
 		e.preventDefault()
 		// console.log('hit the submit account update route');
@@ -35,8 +34,6 @@ class AccountEdit extends React.Component {
 				}
 			})
 			const parsedResponse = await updatedAccountResponse.json()
-			// console.log(parsedResponse);
-			// Sends the new user info to the Global State
 			const info = { email: parsedResponse.data.email, password: parsedResponse.data.password, confirmPassword: parsedResponse.confirmPassword}
 			this.props.setUserInfo(info);
 			this.props.history.push('/account');
@@ -48,7 +45,6 @@ class AccountEdit extends React.Component {
 
 
 	render(){
-		// console.log(this.state);
 		return(
 			<div className="form">
 				<form onSubmit={this.submitAccountUpdate}>
