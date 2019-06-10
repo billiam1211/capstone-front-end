@@ -18,7 +18,7 @@ class Home extends Component{
 					Wedding Exchange is the premier online platform for connecting individuals that want to 
 					buy, sell, and trade wedding goods.
 				</h4>
-				<img id="homeImg" alt="wedding-planning-photo" src="https://www.hellomagazine.com/imagenes/brides/2019011066459/wedding-planning-apps-for-brides/0-313-188/wedding-planning-t.jpg" />
+				<img id="homeImg" alt="wedding-planning" src="https://www.hellomagazine.com/imagenes/brides/2019011066459/wedding-planning-apps-for-brides/0-313-188/wedding-planning-t.jpg" />
 				<div>
 					<Link to="/register"><button>Register New Account</button></Link>
 					<Link to="/login"><button>Login</button></Link>

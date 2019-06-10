@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Account from '../Account';
+
 
 
 
@@ -42,10 +42,10 @@ class Register extends Component {
       })
 
       const parsedResponse = await registerResponse.json();
-      console.log("register response: ", parsedResponse)
+      // console.log("register response: ", parsedResponse)
       const message = parsedResponse.msg
 
-      if(parsedResponse.status == 200){
+      if(parsedResponse.status === 200){
         this.setState({
           email: parsedResponse.data.email,
           userId: parsedResponse.data._id,
@@ -85,8 +85,7 @@ class Register extends Component {
 
 	render(){
     // console.log(this.state);
-    console.log(this.props, 'register component props');
-
+    // console.log(this.props, 'register component props');
         		return(
               <div className="registerContainer">
           			<div>
@@ -97,9 +96,8 @@ class Register extends Component {
                         <input type="password" name="confirmPassword" placeholder="confirm password" onChange={this.handleChange} /> <br />
           		          <button type="submit">Register</button>
           		          <h3> { this.state.msg } </h3>
-                      <img src="https://www.zola.com/blog/wp-content/uploads/2015/12/carfeatured.png"/>
+                      <img alt="just married car" src="https://www.zola.com/blog/wp-content/uploads/2015/12/carfeatured.png"/>
           		        </form>
-
           			</div>
               </div>
         	  )

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
 class AccountEdit extends React.Component {
@@ -23,11 +23,9 @@ class AccountEdit extends React.Component {
 	// REDIRECTS TO HOME
 	submitAccountUpdate = async (e) => {
 		e.preventDefault()
-		console.log('hit the submit account update route');
+		// console.log('hit the submit account update route');
 		const userData = { email: this.state.email, password: this.state.password, confirmPassword: this.state.confirmPassword }
-
 		try{
-
 			const updatedAccountResponse = await fetch(process.env.REACT_APP_BACKEND_URL + `/api/v1/user/${this.state.userId}`,{
 				method: 'PUT', 
 				credentials: 'include',
@@ -36,14 +34,12 @@ class AccountEdit extends React.Component {
 				  'Content-Type': 'application/json'
 				}
 			})
-
 			const parsedResponse = await updatedAccountResponse.json()
-			console.log(parsedResponse);
+			// console.log(parsedResponse);
 			// Sends the new user info to the Global State
 			const info = { email: parsedResponse.data.email, password: parsedResponse.data.password, confirmPassword: parsedResponse.confirmPassword}
 			this.props.setUserInfo(info);
 			this.props.history.push('/account');
-
 		}catch(err){
 			console.log(err);
 		}
@@ -52,7 +48,7 @@ class AccountEdit extends React.Component {
 
 
 	render(){
-		console.log(this.state);
+		// console.log(this.state);
 		return(
 			<div className="form">
 				<form onSubmit={this.submitAccountUpdate}>
@@ -65,9 +61,8 @@ class AccountEdit extends React.Component {
 			</div>
 			)	
 	}
-
-
 }
+
 
 
 export default AccountEdit;

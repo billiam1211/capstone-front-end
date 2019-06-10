@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
 function ListingShow (props) {
-		console.log(props.state.listingToShow);
+		// console.log(props.state.listingToShow);
 		
 const arrayBufferToBase64 = (buffer) => {
 		    let binary = '';
@@ -40,7 +40,7 @@ const arrayBufferToBase64 = (buffer) => {
 
 						</ul>
 					</li>
-					<img src={`data:image/jpeg;base64,${data}`} /><br/>
+					<img alt="listing images" src={`data:image/jpeg;base64,${data}`} /><br/>
 				</div>
 			)
 

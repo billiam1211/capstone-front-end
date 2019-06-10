@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import Collapsible from 'react-collapsible';
+import React from 'react';
 
 
 function Listings (props) {
-	console.log(props, '<----<<<');
+	// console.log(props, '<----<<<');
 	// this function converts the buffer of the image to a string
 	const arrayBufferToBase64 = (buffer) => {
 		    let binary = '';
@@ -41,7 +40,7 @@ function Listings (props) {
 							</li>
 						</ul>
 					</li>
-					<img src={`data:image/jpeg;base64,${data}`} /><br/>
+					<img alt="listing images" src={`data:image/jpeg;base64,${data}`} /><br/>
 				</div>
 			)
 	})

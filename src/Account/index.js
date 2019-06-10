@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Listings from '../Listings';
-import AccountEdit from '../AccountEdit';
-import CreateListing from '../CreateListing';
 import EditListing from '../EditListing';
 import Guest from '../Guest';
 
@@ -33,9 +31,7 @@ class Account extends React.Component {
 	//GETS THE LISTINGS FOR THE LOGGED IN USER
 	getUserListings = async (id) => {
 	const loggedUserId = id
-
 	try{
-
 	  const listingResponse = await fetch(process.env.REACT_APP_BACKEND_URL + `/api/v1/user/${loggedUserId}`, {
 	    method: 'GET', 
 	    credentials: 'include',
@@ -43,14 +39,11 @@ class Account extends React.Component {
 	      'Content-Type': 'application/json'
 	    }
 	  })
-
 	  const parsedResponse = await listingResponse.json();
-	  console.log('PARSED RESPONSE: ', parsedResponse);
-
+	  // console.log('PARSED RESPONSE: ', parsedResponse);
 	  this.setState({
 	  	listings: parsedResponse.data.listings
 	  })
-
 	}catch(err){
 	  console.log(err);
 		}
@@ -69,7 +62,7 @@ class Account extends React.Component {
 	// LOGS CURRENT USER OUT, RESETS GLOBAL STATE AND REDIRECTS TO HOME 
 	handleLogout = async (e) => {
 		e.preventDefault()
-		console.log('logout button clicked');
+		// console.log('logout button clicked');
 		try{
 			const logoutResponse = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/auth/logout', {
 				method: 'DELETE', 
@@ -99,7 +92,7 @@ class Account extends React.Component {
 	// SENDS USER TO ACCOUNT EDIT COMPONENT 
 	handleEditAccount = (e) => {
 		e.preventDefault()
-		console.log('Edit account button clicked');
+		// console.log('Edit account button clicked');
       	this.props.history.push('/accountEdit');
 
 	}
@@ -109,7 +102,7 @@ class Account extends React.Component {
 	// DELETES USER ACCOUNT AND REDIRECTS TO HOME PAGE
 	handleDeleteAccount = async (e) => {
 		e.preventDefault()
-		console.log('delete account button clicked');
+		// console.log('delete account button clicked');
 		try{
 			const deleteAccountResponse = await fetch(process.env.REACT_APP_BACKEND_URL + `/api/v1/user/${this.state.userId}`,{
 				method: 'DELETE', 
@@ -132,7 +125,7 @@ class Account extends React.Component {
 	// // SET TRIGGER TO RENDER THE CREATE LISTING COMPONENT
 	handleCreateNewListing = (e) => {
 		e.preventDefault();
-		console.log('handle create new listing ');
+		// console.log('handle create new listing ');
         this.props.history.push('/CreateListing');
 	}
 
@@ -140,13 +133,11 @@ class Account extends React.Component {
 
 	//DELETES A SPECIFIC LISTING USING THE DATA-ID PROPERTY
 	deleteListing = async (e) => {
-		console.log(this.props);
-		console.log('hit the deleteListing button');
-			console.log(e.currentTarget.dataset.listingId);
+		// console.log(this.props);
+		// console.log('hit the deleteListing button');
+			// console.log(e.currentTarget.dataset.listingId);
 			const listingId = e.currentTarget.dataset.listingId;
-
 			try{
-
 			const deleteListingResponse = await fetch(process.env.REACT_APP_BACKEND_URL + `/api/v1/listing/${listingId}`, {
 				method: 'DELETE', 
 				credentials: 'include',
@@ -154,13 +145,9 @@ class Account extends React.Component {
 				  'Content-Type': 'application/json'
 				}
 			})
-
 			const parsedResponse = await deleteListingResponse.json();
-
-			console.log(parsedResponse);
-
+			// console.log(parsedResponse);
 			this.getUserListings(this.state.userId)
-
 			this.props.history.push('/account');
 		}catch(err){
 			console.log(err);
@@ -172,8 +159,8 @@ class Account extends React.Component {
 	//EDIT LISTING FUNCTION
 	editListing = (e) => {
 		e.preventDefault()
-		console.log('hit the edit listing function');
-		console.log(e.currentTarget.dataset.listingId)
+		// console.log('hit the edit listing function');
+		// console.log(e.currentTarget.dataset.listingId)
 		this.setState({
 			listingToEditId: e.currentTarget.dataset.listingId,
 			showEditListing: true
@@ -195,9 +182,9 @@ class Account extends React.Component {
 
 
 	render(){
- 		console.log(this.props.globalState, 'account global state');
- 		console.log('ACCOUNT STATE: ', this.state);
- 		if(this.state.loggedIn == false){
+ 		// console.log(this.props.globalState, 'account global state');
+ 		// console.log('ACCOUNT STATE: ', this.state);
+ 		if(this.state.loggedIn === false){
  			return(
  				<div>
  					<Guest />
@@ -213,7 +200,7 @@ class Account extends React.Component {
 	 		} else {
 
 
-				if(this.state.listings.length == 0){
+				if(this.state.listings.length === 0){
 							return(
 						        <div class="loginContainer">
 									<div className="form">
@@ -237,7 +224,9 @@ class Account extends React.Component {
 								</div>
 								)
 
+
 			 			} else {
+
 
 				 			if(this.state.listings.length > 0){
 								return(
@@ -265,9 +254,10 @@ class Account extends React.Component {
 									</div>
 									)	
 							}
+
+
 			 			}
 			 		}
-
  		} 
 	}
 }

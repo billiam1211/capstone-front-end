@@ -10,17 +10,20 @@ class ContactSeller extends Component {
 			listingThatBuyerWants: [],
 			subject: '',
 			msg: ''
-
 		}
 	}
+
+
 
 	handleChange = (e) => {
 	this.setState({[e.target.name]: e.target.value});
 	}
 
+
+
 	sendMsg = (e) => {
 		e.preventDefault()
-		console.log('send message was clicked');
+		// console.log('send message was clicked');
 	}
 
 
@@ -36,7 +39,6 @@ class ContactSeller extends Component {
 
 			</div>
 			)
-
 	}
 }
 

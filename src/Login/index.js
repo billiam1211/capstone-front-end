@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import Account from '../Account';
+import React from 'react';
 
 class Login extends React.Component {
   constructor(props){
@@ -37,8 +36,7 @@ class Login extends React.Component {
       })
 
       const parsedResponse = await loginResponse.json();
-      console.log(parsedResponse);
-
+      // console.log(parsedResponse);
       if(parsedResponse.status === 200){
         this.setState({
 			email: parsedResponse.data.email,
@@ -69,9 +67,9 @@ class Login extends React.Component {
 
 
   render(){
-    console.log(this.state);
+    // console.log(this.state);
       return (
-        <div class="loginContainer">
+        <div className="loginContainer">
           <form className="form" onSubmit={this.handleLogin}>
             <h3>Login</h3>
             <input type="text" name="email" placeholder="enter email" onChange={this.handleChange} /> <br />
