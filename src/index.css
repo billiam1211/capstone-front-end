@@ -7,8 +7,8 @@ body {
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
-
     overflow: scroll;
+    min-height: 100%;
 }
 
 h1,
@@ -101,10 +101,11 @@ footer {
 }
 
 .form {
+    background-color: rgba(255, 255, 255, 0.5);
     text-align: center;
-    background-color: rgba(255, 255, 255, .6);
     padding: 20px;
     text-align: center;
+    
 }
 
 .inForm {
@@ -189,47 +190,6 @@ footer {
     width: auto;
 }
 
-#headerDiv {
-    background-color: rgba(255, 255, 255, 1);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin-top: 5px;
-}
-
-#listingHeader {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 100px;
-    width: auto;
-}
-
-#inputBig {
-    height: 200px;
-    width: 194px;
-    word-wrap: all;
-    margin: 5px;
-}
-
-#homeImg {
-    height: 250px;
-    border: 35px solid;
-    border-image: url(https://png.pngtree.com/png_detail/20181017/european-gorgeous-vintage-photo-frames-png-clipart_1408689.png) 50 round;
-    border-radius: 0%;
-}
-
-#carPhoto {
-    height: 250px;
-    width: auto;
-    border-radius: 10%;
-}
-
-#ourStory {
-    width: 50%;
-    margin-right: auto;
-    margin-left: auto;
-}
 
 .loginContainer{
     background: url(https://www.yourqueenslandwedding.com.au/photos/display/72-0-2014-wedding-hero-image-high-res.jpg);
@@ -262,6 +222,46 @@ footer {
     overflow: scroll;
     height: 600px;
 }
+
+#headerDiv {
+    background-color: rgba(255, 255, 255, 1);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 5px;
+}
+
+#listingHeader {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100px;
+    width: auto;
+}
+
+#inputBig {
+    height: 200px;
+    width: 194px;
+    word-wrap: all;
+    margin: 5px;
+}
+
+#homeImg {
+    height: 300px;
+}
+
+#carPhoto {
+    height: 250px;
+    width: auto;
+    border-radius: 10%;
+}
+
+#ourStory {
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 
 
 
