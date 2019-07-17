@@ -24,6 +24,7 @@ class ContactSeller extends Component {
 
 
 	render(){
+		console.log(this.state);
 		return(
 			<div>
 				<form onSubmit={this.sendMsg} className="message">

@@ -220,7 +220,7 @@ class Account extends React.Component {
 
 				 			if(this.state.listings.length > 0){
 								return(
-							        <div class="loginContainer">
+							        <div className="loginContainer">
 										<div className="form">
 											<div className="inForm">
 												<h1>Account</h1>
