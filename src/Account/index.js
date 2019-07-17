@@ -195,9 +195,10 @@ class Account extends React.Component {
 									<div className="form">
 										<div className="inForm">
 											<h1>Account</h1>
-											<h3>Email:</h3>
+											<br />
+											<h5>Email:</h5>
 											<p>{this.state.email}</p>
-											<h3>User Id:</h3>
+											<h5>User Id:</h5>
 											<p>{this.state.userId}</p>
 										</div>
 										<button onClick={this.handleCreateNewListing}>Create New Listing</button>
@@ -208,7 +209,7 @@ class Account extends React.Component {
 										<br />
 										<p>You don't have any listings yet <br /> 
 										Click 'Create Listing' to post an item for sale</p>	
-										<br />
+										<br /><br /><br /><br /><br /><br /><br /><br /><br />
 									</div>
 								</div>
 								)
@@ -223,9 +224,10 @@ class Account extends React.Component {
 										<div className="form">
 											<div className="inForm">
 												<h1>Account</h1>
-												<h3>Email:</h3>
+												<br />
+												<h5>Email:</h5>
 												<p>{this.state.email}</p>
-												<h3>User Id:</h3>
+												<h5>User Id:</h5>
 												<p>{this.state.userId}</p>
 											</div>
 											<div className="buttonWrapper">
