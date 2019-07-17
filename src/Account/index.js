@@ -238,8 +238,11 @@ class Account extends React.Component {
 												<button onClick={this.handleLogout}>Logout</button>
 												<button onClick={this.handleEditAccount}>Edit Account</button>
 												<button onClick={this.handleDeleteAccount}>Delete Account</button>
+
 											</div>
+
 										</div>
+									</div>
 									
 									)	
 							}
