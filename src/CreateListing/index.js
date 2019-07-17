@@ -12,6 +12,7 @@ class CreateListing extends Component {
 			price: '',
 			quantity: '',
 			description: '',
+			sellerEmail: props.globalState.email,
 			uploadProgress: ''
 		}
 	}
@@ -52,6 +53,7 @@ class CreateListing extends Component {
 		formData.append('price', this.state.price)
 		formData.append('description', this.state.description)
 		formData.append('quantity', this.state.quantity)
+		formData.append('sellerEmail', this.state.sellerEmail)
 		await axios.post(process.env.REACT_APP_BACKEND_URL + '/api/v1/listing/new', formData, { withCredentials: true }, {
 			onUploadProgress: progressEvent => {
 				console.log('Upload Progress: ' + Math.round((progressEvent.loaded / progressEvent.total) * 100) + '%')

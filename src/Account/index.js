@@ -192,23 +192,25 @@ class Account extends React.Component {
 				if(this.state.listings.length === 0){
 							return(
 						        <div className="loginContainer">
-									<div className="form">
-										<div className="inForm">
-											<h1>Account</h1>
-											<h3>Email:</h3>
-											<p>{this.state.email}</p>
-											<h3>User Id:</h3>
-											<p>{this.state.userId}</p>
+						        	<div className="filter">
+										<div className="form">
+											<div className="inForm">
+												<h1>Account</h1>
+												<h3>Email:</h3>
+												<p>{this.state.email}</p>
+												<h3>User Id:</h3>
+												<p>{this.state.userId}</p>
+											</div>
+											<button onClick={this.handleCreateNewListing}>Create New Listing</button>
+											<button onClick={this.handleLogout}	>Logout</button>
+											<button onClick={this.handleEditAccount}>Edit Account</button>
+											<button onClick={this.handleDeleteAccount}>Delete Account</button>
+											<br />
+											<br />
+											<p>You don't have any listings yet <br /> 
+											Click 'Create Listing' to post an item for sale</p>	
+											<br />
 										</div>
-										<button onClick={this.handleCreateNewListing}>Create New Listing</button>
-										<button onClick={this.handleLogout}	>Logout</button>
-										<button onClick={this.handleEditAccount}>Edit Account</button>
-										<button onClick={this.handleDeleteAccount}>Delete Account</button>
-										<br />
-										<br />
-										<p>You don't have any listings yet <br /> 
-										Click 'Create Listing' to post an item for sale</p>	
-										<br />
 									</div>
 								</div>
 								)
@@ -219,27 +221,31 @@ class Account extends React.Component {
 
 				 			if(this.state.listings.length > 0){
 								return(
-							        <div class="loginContainer">
-										<div className="form">
-											<div className="inForm">
-												<h1>Account</h1>
-												<h3>Email:</h3>
-												<p>{this.state.email}</p>
-												<h3>User Id:</h3>
-												<p>{this.state.userId}</p>
+					
+								        <div class="loginContainer">
+								        	<div className="filter">
+												<div className="form">
+													<div className="inForm">
+														<h1>Account</h1>
+														<h3>Email:</h3>
+														<p>{this.state.email}</p>
+														<h3>User Id:</h3>
+														<p>{this.state.userId}</p>
+													</div>
+													<div className="buttonWrapper">
+														<button onClick={this.handleCreateNewListing}>Create New Listing</button>
+														<button onClick={this.handleLogout}>Logout</button>
+														<button onClick={this.handleEditAccount}>Edit Account</button>
+														<button onClick={this.handleDeleteAccount}>Delete Account</button>
+													</div>
+													
+													<h3 id="listingHeader">Listings:</h3>
+												</div>
+												<Listings listings={this.state.listings} editListing={this.editListing} deleteListing={this.deleteListing} />
 											</div>
-											<div className="buttonWrapper">
-												<button onClick={this.handleCreateNewListing}>Create New Listing</button>
-												<button onClick={this.handleLogout}>Logout</button>
-												<button onClick={this.handleEditAccount}>Edit Account</button>
-												<button onClick={this.handleDeleteAccount}>Delete Account</button>
-											</div>
-											<br />
-								
-											<h3 id="listingHeader">Listings:</h3>
-											<Listings listings={this.state.listings} editListing={this.editListing} deleteListing={this.deleteListing} />
+
 										</div>
-									</div>
+									
 									)	
 							}
 
