@@ -222,7 +222,6 @@ class Account extends React.Component {
 
 				 			if(this.state.listings.length > 0){
 								return(
-
 							        <div className="loginContainer">
 										<div className="form">
 											<div className="inForm">
@@ -239,10 +238,12 @@ class Account extends React.Component {
 												<button onClick={this.handleEditAccount}>Edit Account</button>
 												<button onClick={this.handleDeleteAccount}>Delete Account</button>
 											</div>
-
+											<br />
+								
+											<h3 id="listingHeader">Listings:</h3>
+											<Listings listings={this.state.listings} editListing={this.editListing} deleteListing={this.deleteListing} />
 										</div>
 									</div>
-									
 									)	
 							}
 
