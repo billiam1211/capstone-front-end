@@ -62,7 +62,7 @@ class ListingIndex extends Component {
 
 
 	contactSeller = () => {
-		this.props.history.push('/contactSeller')
+		// this.props.history.push('/contactSeller')
 	}
 
 

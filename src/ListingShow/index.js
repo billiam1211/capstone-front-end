@@ -3,6 +3,9 @@ import React from 'react';
 
 function ListingShow (props) {
 		
+console.log(props.state.listingToShow.sellerEmail);
+const sellerEmail = props.state.listingToShow.sellerEmail
+
 const arrayBufferToBase64 = (buffer) => {
 		    let binary = '';
 		    let bytes = [].slice.call(new Uint8Array(buffer));
@@ -15,6 +18,7 @@ const arrayBufferToBase64 = (buffer) => {
 		const data = arrayBufferToBase64(props.state.listingToShow.img.data.data)
 
 		return(
+
 				<div className="listingContainer">
 					<li>
 						<ul className="listingUl">
@@ -35,7 +39,9 @@ const arrayBufferToBase64 = (buffer) => {
 							</li>
 
 							<button onClick={ props.back }>Back to Index</button>
-							<button onClick={ props.contactSeller }>Contact Seller</button>
+							<a href={"mailto:" + props.state.listingToShow.sellerEmail + "?subject=Lets Connect"}>
+								<button>Contact Seller</button>
+							</a>
 
 						</ul>
 					</li>
