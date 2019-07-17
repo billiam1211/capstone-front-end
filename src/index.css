@@ -1,6 +1,6 @@
 body {
-    background: url(https://wallpaperplay.com/walls/full/7/b/3/242781.jpg);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+/*    background: url(https://wallpaperplay.com/walls/full/7/b/3/242781.jpg);
+*/    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
         "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
         sans-serif;
     background-repeat: no-repeat;
@@ -102,10 +102,18 @@ footer {
 
 .form {
     background-color: rgba(255, 255, 255, 0.5);
-    text-align: center;
     padding: 20px;
     text-align: center;
-    
+}
+
+.homeContainer {
+    background: url(https://wallpaperplay.com/walls/full/7/b/3/242781.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    overflow: scroll;
+    height: 600px;
 }
 
 .inForm {
@@ -257,9 +265,10 @@ footer {
 }
 
 #ourStory {
-    width: 50%;
+    width: 65%;
     margin-right: auto;
     margin-left: auto;
+    font-size: 14pt;
 }
 
 
