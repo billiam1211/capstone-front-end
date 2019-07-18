@@ -9,8 +9,7 @@ const Footer = () => {
 	<footer>
     	<div id="headerDiv">
     		<p>Wedding Exchange ©2019</p>
-    		<p>General Assembly - Capstone</p>
-    		<p>Contact: help@WeddingExchange.com</p>
+    		<p>Support: help@weddingexchange.com</p>
         </div>
     </footer>
     )

@@ -113,7 +113,7 @@ class ListingIndex extends Component {
 												<li>
 													<strong>Description:</strong> {listing.description}
 												</li>
-
+												<br />
 											</ul>
 
 										</li>

@@ -74,7 +74,7 @@ class EditListing extends Component {
 					<input type="text" name="name" placeholder="listing title" onChange={this.handleChange} /> <br />
 					<input type="text" name="price" placeholder="price" onChange={this.handleChange} /> <br />
 					<input type="text" name="quantity" placeholder="quantity" onChange={this.handleChange} /> <br />
-					<input type="textarea" name="description" placeholder="description" onChange={this.handleChange} /> <br />
+					<textarea id="inputBig" type="textarea" name="description" placeholder="description" onChange={this.handleChange} /> <br />
 					<select name="category" placeholder="category" onChange={this.handleSelectChange}>
 						<option value="apparel">Apparel</option>
 						<option value="ceremony">Ceremony</option>

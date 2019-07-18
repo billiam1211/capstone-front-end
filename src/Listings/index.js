@@ -33,10 +33,12 @@ function Listings (props) {
 							<li>
 								<strong>Description:</strong> {listing.description}
 							</li>
+							<br />
 							<li>
 								<button data-listing-id={listing._id} onClick={props.editListing}>Edit Listing</button>
 								<button data-listing-id={listing._id} onClick={props.deleteListing}>Delete Listing</button>
 							</li>
+							<br />
 						</ul>
 					</li>
 					<img alt="listing images" src={`data:image/jpeg;base64,${data}`} /><br/>
