@@ -115,7 +115,6 @@ class ListingIndex extends Component {
 												</li>
 												<br />
 											</ul>
-
 										</li>
 										<img alt="listings" src={`data:image/jpeg;base64,${data}`} /><br/>
 									</div>

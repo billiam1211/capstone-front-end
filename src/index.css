@@ -7,8 +7,8 @@ body {
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
-    overflow: scroll;
-    min-height: 100%;
+    overflow: auto;
+    min-height: 80%;
 }
 h1,
 h2,
@@ -86,7 +86,6 @@ footer {
     position: fixed;
     bottom: 0px;
     width: 100%;
-    margin-top: 10px;
 }
 .form {
     background-color: rgba(255, 255, 255, 0.6);
@@ -245,6 +244,10 @@ footer {
     margin-right: auto;
     margin-left: auto;
     font-size: 14pt;
+}
+#oops{
+    height: 150px;
+    width: auto;
 }
 
 
